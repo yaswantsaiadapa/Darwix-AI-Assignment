@@ -14,7 +14,7 @@ from backend.app.config import GROQ_API_KEY, GROQ_LLM_MODEL, GROQ_WHISPER_MODEL
 
 
 def clean_llm_response(text: str) -> str:
-    """Strips internal <think>...</think> chain-of-thought tokens from reasoning models."""
+    """Strips internal <think>...</think> chain-of-thought tokens and raw markdown symbols."""
     if not text:
         return ""
     cleaned = re.sub(r"<think>[\s\S]*?</think>", "", text, flags=re.IGNORECASE)
@@ -24,6 +24,16 @@ def clean_llm_response(text: str) -> str:
         cleaned = re.sub(r"<think>[\s\S]*$", "", cleaned, flags=re.IGNORECASE)
     if "<thought>" in cleaned.lower():
         cleaned = re.sub(r"<thought>[\s\S]*$", "", cleaned, flags=re.IGNORECASE)
+
+    # Strip inline bracket citations
+    cleaned = re.sub(r"【[^】]+】", "", cleaned)
+    cleaned = re.sub(r"\[kb_[^\]]+\]", "", cleaned)
+
+    # Strip markdown symbols so speech synthesis never reads asterisks or hashtags
+    cleaned = re.sub(r"\*\*([^*]+)\*\*", r"\1", cleaned)
+    cleaned = re.sub(r"\*([^*]+)\*", r"\1", cleaned)
+    cleaned = re.sub(r"^#+\s*", "", cleaned, flags=re.MULTILINE)
+
     return cleaned.strip()
 
 
@@ -194,14 +204,15 @@ class GroqService:
             return self._generate_offline_grounded_response(user_message, retrieved_context, dialogue_state)
 
         system_prompt = (
-            "You are Alex, an experienced, friendly, and professional commercial lending advisor at Darwix Commercial Lending speaking over the phone with a business owner.\n\n"
-            "CONVERSATIONAL EXPLANATION RULES (DO NOT READ RAW TEXT):\n"
-            "1. Explain the guidelines in natural, conversational human language as if speaking on a phone call. Never read raw manual text or robotic bullet lists verbatim.\n"
-            "2. Break down complex underwriting terms into clear, practical explanations for the borrower (e.g. explain what limits, collateral conditions, or fees mean for their business).\n"
-            "3. Answer ALL parts of the user's inquiry thoroughly and factually using ONLY the RETRIEVED CONTEXT below.\n"
-            "4. NEVER invent interest rates, fee percentages, or turnaround guarantees not present in the context. If a specific detail is not in the context, politely explain that it is not covered in our standard manual and offer senior specialist assistance.\n"
-            "5. Preserve exact numbers, limits, and percentages from the context while explaining them smoothly and naturally.\n"
-            "6. Do NOT output your internal thinking, reasoning steps, or scratchpad.\n\n"
+            "You are Alex, an experienced human commercial loan officer at Darwix Commercial Lending talking over the phone with a customer.\n\n"
+            "CRITICAL SPOKEN PHONE CONVERSATION RULES (ACT LIKE A REAL HUMAN AGENT):\n"
+            "1. You are a live human agent talking on a phone call. Answer like a real person having a verbal phone conversation.\n"
+            "2. NEVER output markdown symbols (like **, __, #, -, *), asterisks, bullet dashes, or section headers (like Section 4.1). NEVER read brackets or section codes aloud.\n"
+            "3. Speak in complete, natural conversational sentences. Explain the policy like you are explaining it verbally to a person over the phone.\n"
+            "4. NEVER read out bullet lists or say 'bullet point'. Connect ideas naturally with spoken phrases like 'First, ...', 'Also, ...', 'Regarding the fees, ...', and 'In addition to that, ...'.\n"
+            "5. Maintain 100% factual accuracy on loan caps, interest rates, and fees from the RETRIEVED CONTEXT below, but explain what they mean conversationally.\n"
+            "6. If a specific figure is not in the context, politely let the customer know in conversational words that it is outside our standard manual and offer to connect them with a senior specialist.\n"
+            "7. Do NOT output internal reasoning tags or thinking steps.\n\n"
             f"CURRENT DIALOGUE STATE: {dialogue_state}\n"
             f"RETRIEVED CONTEXT:\n{retrieved_context}\n"
         )

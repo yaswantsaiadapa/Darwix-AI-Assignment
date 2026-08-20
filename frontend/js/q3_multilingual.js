@@ -25,11 +25,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const micIcon = document.getElementById("q3-mic-icon");
   const suggestedPills = document.querySelectorAll(".q3-pill-btn");
 
+  // Call Header Controls (matching Q1)
+  const btnStartCall = document.getElementById("q3-btn-start-call");
+  const btnMicToggle = document.getElementById("q3-btn-mic-toggle");
+  const btnEndCall = document.getElementById("q3-btn-end-call");
+  const btnClearChat = document.getElementById("q3-btn-clear-chat");
+  const callStatusDot = document.getElementById("q3-call-status-dot");
+  const callStatusLabel = document.getElementById("q3-call-status-label");
+  const waveformBars = document.getElementById("q3-waveform-bars");
+
   // State
   let currentMarket = "PH";
   let scenarios = [];
   let currentScenario = null;
   let isPlayingScenario = false;
+  let isCallActive = false;
   let scenarioTimeouts = [];
   let conversationHistory = [];
   let mediaRecorder = null;
@@ -355,13 +365,63 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       isRecording = false;
       if (btnMic) btnMic.classList.remove("recording");
+      if (btnMicToggle) btnMicToggle.classList.remove("recording");
       if (micIcon) micIcon.textContent = "🎙️";
     }
+  }
+
+  // 8. Call Control Functions (Matching Q1 Bot)
+  function startCall() {
+    isCallActive = true;
+    if (btnStartCall) btnStartCall.classList.add("hidden");
+    if (btnMicToggle) btnMicToggle.classList.remove("hidden");
+    if (btnEndCall) btnEndCall.classList.remove("hidden");
+
+    if (callStatusDot) callStatusDot.className = "status-dot-pulse active";
+    if (callStatusLabel) callStatusLabel.textContent = "In Call";
+    if (waveformBars) waveformBars.classList.remove("hidden");
+
+    const greeting = currentMarket === "PH"
+      ? "Magandang araw po! Ako po si Maria mula sa Darwix Bancassurance. May maitutulong po ba ako sa inyong life policy, premium due date, o rider coverage?"
+      : "Selamat pagi/siang Bapak/Ibu, saya Dewi dari Darwix Multifinance. Ada yang bisa kami bantu terkait angsuran pembiayaan, tanggal jatuh tempo, atau perpanjangan tenor?";
+
+    chatCanvas.innerHTML = "";
+    appendMessage("assistant", greeting, currentMarket === "PH" ? "Maria (Agent)" : "Dewi (Agent)");
+    speakNativeAsync(greeting, "Agent");
+  }
+
+  function endCall() {
+    isCallActive = false;
+    if (btnStartCall) btnStartCall.classList.remove("hidden");
+    if (btnMicToggle) btnMicToggle.classList.add("hidden");
+    if (btnEndCall) btnEndCall.classList.add("hidden");
+
+    if (callStatusDot) callStatusDot.className = "status-dot ready";
+    if (callStatusLabel) callStatusLabel.textContent = "Call Ended";
+    if (waveformBars) waveformBars.classList.add("hidden");
+
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+    if (isRecording) {
+      toggleMic();
+    }
+  }
+
+  function clearChat() {
+    endCall();
+    conversationHistory = [];
+    renderWelcomeMessage();
   }
 
   // Event Listeners
   if (btnMarketPh) btnMarketPh.addEventListener("click", () => switchMarket("PH"));
   if (btnMarketId) btnMarketId.addEventListener("click", () => switchMarket("ID"));
+
+  if (btnStartCall) btnStartCall.addEventListener("click", startCall);
+  if (btnEndCall) btnEndCall.addEventListener("click", endCall);
+  if (btnClearChat) btnClearChat.addEventListener("click", clearChat);
+  if (btnMicToggle) btnMicToggle.addEventListener("click", toggleMic);
 
   if (scenarioSelect) {
     scenarioSelect.addEventListener("change", (e) => {

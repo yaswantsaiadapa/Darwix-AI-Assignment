@@ -71,7 +71,15 @@ document.addEventListener("DOMContentLoaded", () => {
   function fallbackSpeech(text) {
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
-      const cleanUtterance = text.replace(/\[.*?\]/g, "").replace(/📌.*/g, "");
+      const cleanUtterance = text
+        .replace(/【[^】]+】/g, "")
+        .replace(/\[.*?\]/g, "")
+        .replace(/\*\*([^*]+)\*\*/g, "$1")
+        .replace(/\*([^*]+)\*/g, "$1")
+        .replace(/[\*#_~`]/g, "")
+        .replace(/^\s*[\-•*]\s+/gm, "")
+        .replace(/📌.*/g, "")
+        .trim();
       const utterance = new SpeechSynthesisUtterance(cleanUtterance);
       utterance.rate = 1.05;
       callStatusLabel.textContent = "Agent is speaking...";

@@ -5493,5 +5493,425 @@
         "content": "I would like to speak to a human loan officer please."
       }
     ]
+  },
+  {
+    "lead_id": "LEAD-SBA-312B731B",
+    "created_at": "2026-08-20 07:32:20Z",
+    "status": "QUALIFIED",
+    "business_profile": {
+      "business_name": "Apex Logistics LLC",
+      "applicant_name": "Phone Applicant",
+      "phone": "Voice Channel",
+      "years_in_business": 4.0,
+      "annual_revenue": 600000.0,
+      "requested_loan_amount": 150000.0,
+      "stated_loan_purpose": "working capital and fleet maintenance"
+    },
+    "underwriting_assessment": {
+      "eligibility_tier": "Tier 2 (Standard MSME)",
+      "recommended_program": "Unsecured Business Growth Loan (Up to \u20b950 Lakhs)",
+      "preliminary_max_approved": 150000.0,
+      "monthly_payment_estimate": 3150.28,
+      "underwriting_flags": [],
+      "escalation_required": false
+    },
+    "call_metadata": {
+      "total_turns": 12,
+      "call_summary": "Customer completed voice qualification. Lead generated in CRM.",
+      "citations_consulted": []
+    },
+    "full_transcript": [
+      {
+        "role": "assistant",
+        "content": "Hello! Thank you for calling Darwix AI commercial lending. My name is Alex. I can help check your eligibility for commercial business growth loans, collateral-free MSME credit, and working capital lines. May I know the legal name of your business?"
+      },
+      {
+        "role": "user",
+        "content": "We are Apex Logistics LLC."
+      },
+      {
+        "role": "assistant",
+        "content": "Great, thank you for confirming Apex Logistics LLC. Could you tell me how many continuous years you\u2019ve been in active business?"
+      },
+      {
+        "role": "user",
+        "content": "We have been in business for 4 years."
+      },
+      {
+        "role": "assistant",
+        "content": "Thanks for that. Could you share approximately what your gross annual revenue or turnover was for the past 12 months?"
+      },
+      {
+        "role": "user",
+        "content": "Our gross revenue last year was around 600,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "Got it. How much funding are you looking to secure for Apex Logistics?"
+      },
+      {
+        "role": "user",
+        "content": "We are looking to borrow 150,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "Great, thank you. Could you tell me the primary purpose for the $150,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
+      },
+      {
+        "role": "user",
+        "content": "We need funds for working capital and fleet maintenance."
+      },
+      {
+        "role": "assistant",
+        "content": "Great news! Based on your 4 years in operation and Rs. 600,000 annual turnover, your business qualifies under our Unsecured Business Growth Loan (Up to \u20b950 Lakhs) for up to Rs. 150,000. Estimated monthly EMI starts around Rs. 3,150/month. Shall I submit your preliminary pre-approval application to underwriting?"
+      },
+      {
+        "role": "user",
+        "content": "Yes, please submit our application for pre-approval."
+      }
+    ]
+  },
+  {
+    "lead_id": "LEAD-SBA-B73C326F",
+    "created_at": "2026-08-20 07:32:55Z",
+    "status": "QUALIFIED",
+    "business_profile": {
+      "business_name": "Summit Manufacturing",
+      "applicant_name": "Phone Applicant",
+      "phone": "Voice Channel",
+      "years_in_business": 2.0,
+      "annual_revenue": 200000.0,
+      "requested_loan_amount": 100000.0,
+      "stated_loan_purpose": "General Inquiry"
+    },
+    "underwriting_assessment": {
+      "eligibility_tier": "Tier 2 (Standard MSME)",
+      "recommended_program": "Unsecured Business Growth Loan (Up to \u20b950 Lakhs)",
+      "preliminary_max_approved": 100000.0,
+      "monthly_payment_estimate": 2100.19,
+      "underwriting_flags": [
+        "Eligible under CGTMSE government credit guarantee scheme (1-3 years operating vintage)."
+      ],
+      "escalation_required": true
+    },
+    "call_metadata": {
+      "total_turns": 4,
+      "call_summary": "Customer requested direct transfer to a human specialist.",
+      "citations_consulted": []
+    },
+    "full_transcript": [
+      {
+        "role": "assistant",
+        "content": "Hello! Thank you for calling Darwix AI commercial lending. My name is Alex. I can help check your eligibility for commercial business growth loans, collateral-free MSME credit, and working capital lines. May I know the legal name of your business?"
+      },
+      {
+        "role": "user",
+        "content": "Summit Manufacturing"
+      },
+      {
+        "role": "assistant",
+        "content": "Got it, Summit Manufacturing. Could you tell me how many continuous years you\u2019ve been actively in business?"
+      },
+      {
+        "role": "user",
+        "content": "I want to speak with a human specialist right away."
+      }
+    ]
+  },
+  {
+    "lead_id": "LEAD-SBA-D5768AC6",
+    "created_at": "2026-08-20 07:33:31Z",
+    "status": "QUALIFIED",
+    "business_profile": {
+      "business_name": "Apex Logistics LLC",
+      "applicant_name": "Phone Applicant",
+      "phone": "Voice Channel",
+      "years_in_business": 4.0,
+      "annual_revenue": 600000.0,
+      "requested_loan_amount": 150000.0,
+      "stated_loan_purpose": "working capital and inventory"
+    },
+    "underwriting_assessment": {
+      "eligibility_tier": "Tier 2 (Standard MSME)",
+      "recommended_program": "Unsecured Business Growth Loan (Up to \u20b950 Lakhs)",
+      "preliminary_max_approved": 150000.0,
+      "monthly_payment_estimate": 3150.28,
+      "underwriting_flags": [],
+      "escalation_required": false
+    },
+    "call_metadata": {
+      "total_turns": 12,
+      "call_summary": "Customer completed voice qualification. Lead generated in CRM.",
+      "citations_consulted": []
+    },
+    "full_transcript": [
+      {
+        "role": "assistant",
+        "content": "Hello! Thank you for calling Darwix AI commercial lending. My name is Alex. I can help check your eligibility for commercial business growth loans, collateral-free MSME credit, and working capital lines. May I know the legal name of your business?"
+      },
+      {
+        "role": "user",
+        "content": "Apex Logistics LLC."
+      },
+      {
+        "role": "assistant",
+        "content": "Got it, Apex Logistics LLC. How many continuous years have you been actively operating?"
+      },
+      {
+        "role": "user",
+        "content": "We have been operating for 4 years."
+      },
+      {
+        "role": "assistant",
+        "content": "Thanks! Could you share approximately what your gross annual revenue or turnover was for the past 12 months?"
+      },
+      {
+        "role": "user",
+        "content": "Gross revenue was 600,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "Great, thank you. What loan amount are you looking to secure for Apex Logistics?"
+      },
+      {
+        "role": "user",
+        "content": "We are seeking 150,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "Got it. Could you tell me the primary purpose of the $150,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
+      },
+      {
+        "role": "user",
+        "content": "For working capital and inventory."
+      },
+      {
+        "role": "assistant",
+        "content": "Great news! Based on your 4 years in operation and Rs. 600,000 annual turnover, your business qualifies under our Unsecured Business Growth Loan (Up to \u20b950 Lakhs) for up to Rs. 150,000. Estimated monthly EMI starts around Rs. 3,150/month. Shall I submit your preliminary pre-approval application to underwriting?"
+      },
+      {
+        "role": "user",
+        "content": "Yes, please proceed."
+      }
+    ]
+  },
+  {
+    "lead_id": "LEAD-SBA-D0E0AEF8",
+    "created_at": "2026-08-20 07:34:06Z",
+    "status": "QUALIFIED",
+    "business_profile": {
+      "business_name": "Beacon Tech Services",
+      "applicant_name": "Phone Applicant",
+      "phone": "Voice Channel",
+      "years_in_business": 3.0,
+      "annual_revenue": 400000.0,
+      "requested_loan_amount": 80000.0,
+      "stated_loan_purpose": "Equipment and software licenses"
+    },
+    "underwriting_assessment": {
+      "eligibility_tier": "Tier 2 (Standard MSME)",
+      "recommended_program": "Unsecured Business Growth Loan (Up to \u20b950 Lakhs)",
+      "preliminary_max_approved": 80000.0,
+      "monthly_payment_estimate": 1680.15,
+      "underwriting_flags": [],
+      "escalation_required": false
+    },
+    "call_metadata": {
+      "total_turns": 14,
+      "call_summary": "Customer completed voice qualification. Lead generated in CRM.",
+      "citations_consulted": []
+    },
+    "full_transcript": [
+      {
+        "role": "assistant",
+        "content": "Hello! Thank you for calling Darwix AI commercial lending. My name is Alex. I can help check your eligibility for commercial business growth loans, collateral-free MSME credit, and working capital lines. May I know the legal name of your business?"
+      },
+      {
+        "role": "user",
+        "content": "Beacon Tech Services"
+      },
+      {
+        "role": "assistant",
+        "content": "Great, thank you for confirming Beacon Tech Services. Could you tell me how many continuous years you\u2019ve been actively in business?"
+      },
+      {
+        "role": "user",
+        "content": "What is the maximum loan amount and interest rate for a 7(a) loan?"
+      },
+      {
+        "role": "assistant",
+        "content": "I do not have verified policy guidelines regarding that in our official underwriting guidelines. We specialize in commercial business growth loans, working capital facilities, and collateral-free credit. Would you like to proceed with checking your business loan eligibility?"
+      },
+      {
+        "role": "user",
+        "content": "We have been in business 3 years."
+      },
+      {
+        "role": "assistant",
+        "content": "Thanks for confirming the three years. Could you share what your gross annual revenue or turnover was for the most recent 12\u2011month period?"
+      },
+      {
+        "role": "user",
+        "content": "Annual revenue is 400,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "Got it, thank you. How much funding are you looking to secure for Beacon\u202fTech\u202fServices?"
+      },
+      {
+        "role": "user",
+        "content": "Looking for 80,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "Great, thanks. Could you tell me the primary purpose for the $80,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
+      },
+      {
+        "role": "user",
+        "content": "Equipment and software licenses."
+      },
+      {
+        "role": "assistant",
+        "content": "Great news! Based on your 3 years in operation and Rs. 400,000 annual turnover, your business qualifies under our Unsecured Business Growth Loan (Up to \u20b950 Lakhs) for up to Rs. 80,000. Estimated monthly EMI starts around Rs. 1,680/month. Shall I submit your preliminary pre-approval application to underwriting?"
+      },
+      {
+        "role": "user",
+        "content": "Yes, submit it."
+      }
+    ]
+  },
+  {
+    "lead_id": "LEAD-SBA-AAD1DB9E",
+    "created_at": "2026-08-20 07:34:39Z",
+    "status": "QUALIFIED",
+    "business_profile": {
+      "business_name": "Apex Holdings",
+      "applicant_name": "Phone Applicant",
+      "phone": "Voice Channel",
+      "years_in_business": 2.0,
+      "annual_revenue": 300000.0,
+      "requested_loan_amount": 50000.0,
+      "stated_loan_purpose": "Working capital"
+    },
+    "underwriting_assessment": {
+      "eligibility_tier": "Tier 2 (Standard MSME)",
+      "recommended_program": "Unsecured Business Growth Loan (Up to \u20b950 Lakhs)",
+      "preliminary_max_approved": 50000.0,
+      "monthly_payment_estimate": 1050.09,
+      "underwriting_flags": [
+        "Eligible under CGTMSE government credit guarantee scheme (1-3 years operating vintage)."
+      ],
+      "escalation_required": false
+    },
+    "call_metadata": {
+      "total_turns": 14,
+      "call_summary": "Customer completed voice qualification. Lead generated in CRM.",
+      "citations_consulted": []
+    },
+    "full_transcript": [
+      {
+        "role": "assistant",
+        "content": "Hello! Thank you for calling Darwix AI commercial lending. My name is Alex. I can help check your eligibility for commercial business growth loans, collateral-free MSME credit, and working capital lines. May I know the legal name of your business?"
+      },
+      {
+        "role": "user",
+        "content": "Apex Holdings"
+      },
+      {
+        "role": "assistant",
+        "content": "Got it, Apex Holdings. Could you tell me how many continuous years you've been actively operating?"
+      },
+      {
+        "role": "user",
+        "content": "Can you finance my personal residential mortgage or crypto mining rig?"
+      },
+      {
+        "role": "assistant",
+        "content": "I do not have verified policy guidelines regarding that in our official underwriting guidelines. We specialize in commercial business growth loans, working capital facilities, and collateral-free credit. Would you like to proceed with checking your business loan eligibility?"
+      },
+      {
+        "role": "user",
+        "content": "We have been active for 2 years."
+      },
+      {
+        "role": "assistant",
+        "content": "Thanks for confirming the 2\u2011year track record. Could you share what your gross annual revenue or turnover was for the most recent 12\u2011month period?"
+      },
+      {
+        "role": "user",
+        "content": "300,000 revenue."
+      },
+      {
+        "role": "assistant",
+        "content": "Got it, thank you. How much funding are you looking to borrow for Apex\u202fHoldings?"
+      },
+      {
+        "role": "user",
+        "content": "50,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "Great, thanks. Could you tell me the primary purpose for the $50,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
+      },
+      {
+        "role": "user",
+        "content": "Working capital."
+      },
+      {
+        "role": "assistant",
+        "content": "Great news! Based on your 2 years in operation and Rs. 300,000 annual turnover, your business qualifies under our Unsecured Business Growth Loan (Up to \u20b950 Lakhs) for up to Rs. 50,000. Estimated monthly EMI starts around Rs. 1,050/month. Shall I submit your preliminary pre-approval application to underwriting?"
+      },
+      {
+        "role": "user",
+        "content": "Yes please."
+      }
+    ]
+  },
+  {
+    "lead_id": "LEAD-SBA-DED52522",
+    "created_at": "2026-08-20 07:34:51Z",
+    "status": "QUALIFIED",
+    "business_profile": {
+      "business_name": "Pinnacle Construction",
+      "applicant_name": "Phone Applicant",
+      "phone": "Voice Channel",
+      "years_in_business": 2.0,
+      "annual_revenue": 200000.0,
+      "requested_loan_amount": 100000.0,
+      "stated_loan_purpose": "General Inquiry"
+    },
+    "underwriting_assessment": {
+      "eligibility_tier": "Tier 2 (Standard MSME)",
+      "recommended_program": "Unsecured Business Growth Loan (Up to \u20b950 Lakhs)",
+      "preliminary_max_approved": 100000.0,
+      "monthly_payment_estimate": 2100.19,
+      "underwriting_flags": [
+        "Eligible under CGTMSE government credit guarantee scheme (1-3 years operating vintage)."
+      ],
+      "escalation_required": true
+    },
+    "call_metadata": {
+      "total_turns": 4,
+      "call_summary": "Customer requested direct transfer to a human specialist.",
+      "citations_consulted": []
+    },
+    "full_transcript": [
+      {
+        "role": "assistant",
+        "content": "Hello! Thank you for calling Darwix AI commercial lending. My name is Alex. I can help check your eligibility for commercial business growth loans, collateral-free MSME credit, and working capital lines. May I know the legal name of your business?"
+      },
+      {
+        "role": "user",
+        "content": "Pinnacle Construction"
+      },
+      {
+        "role": "assistant",
+        "content": "Great, thank you for confirming Pinnacle Construction. Could you tell me how many continuous years you\u2019ve been actively in business?"
+      },
+      {
+        "role": "user",
+        "content": "I would like to speak to a human loan officer please."
+      }
+    ]
   }
 ]

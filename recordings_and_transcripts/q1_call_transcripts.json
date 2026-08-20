@@ -3,8 +3,8 @@
     "call_id": "CALL-Q1-001",
     "scenario_name": "Cooperative Customer (Happy Path)",
     "crm_lead": {
-      "lead_id": "LEAD-SBA-BDE0131F",
-      "created_at": "2026-08-20 07:21:00Z",
+      "lead_id": "LEAD-SBA-D5768AC6",
+      "created_at": "2026-08-20 07:33:31Z",
       "status": "QUALIFIED",
       "business_profile": {
         "business_name": "Apex Logistics LLC",
@@ -39,7 +39,7 @@
         },
         {
           "role": "assistant",
-          "content": "Got it, Apex Logistics LLC. Could you tell me how many continuous years you\u2019ve been in active business?"
+          "content": "Got it, Apex Logistics LLC. How many continuous years have you been actively operating?"
         },
         {
           "role": "user",
@@ -47,7 +47,7 @@
         },
         {
           "role": "assistant",
-          "content": "Thanks for confirming the 4\u2011year history. Could you share roughly what your gross annual revenue or turnover was for the most recent 12\u2011month period?"
+          "content": "Thanks! Could you share approximately what your gross annual revenue or turnover was for the past 12 months?"
         },
         {
           "role": "user",
@@ -63,7 +63,7 @@
         },
         {
           "role": "assistant",
-          "content": "Got it. Could you tell me the primary purpose for the $150,000 loan\u2014e.g., working capital, inventory, equipment purchase, or something else?"
+          "content": "Got it. Could you tell me the primary purpose of the $150,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
         },
         {
           "role": "user",
@@ -79,7 +79,7 @@
         },
         {
           "role": "assistant",
-          "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-BDE0131F. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
+          "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-D5768AC6. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
         }
       ]
     },
@@ -94,7 +94,7 @@
       },
       {
         "role": "assistant",
-        "content": "Got it, Apex Logistics LLC. Could you tell me how many continuous years you\u2019ve been in active business?"
+        "content": "Got it, Apex Logistics LLC. How many continuous years have you been actively operating?"
       },
       {
         "role": "user",
@@ -102,7 +102,7 @@
       },
       {
         "role": "assistant",
-        "content": "Thanks for confirming the 4\u2011year history. Could you share roughly what your gross annual revenue or turnover was for the most recent 12\u2011month period?"
+        "content": "Thanks! Could you share approximately what your gross annual revenue or turnover was for the past 12 months?"
       },
       {
         "role": "user",
@@ -118,7 +118,7 @@
       },
       {
         "role": "assistant",
-        "content": "Got it. Could you tell me the primary purpose for the $150,000 loan\u2014e.g., working capital, inventory, equipment purchase, or something else?"
+        "content": "Got it. Could you tell me the primary purpose of the $150,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
       },
       {
         "role": "user",
@@ -134,7 +134,7 @@
       },
       {
         "role": "assistant",
-        "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-BDE0131F. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
+        "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-D5768AC6. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
       }
     ],
     "citations_used": []
@@ -143,8 +143,8 @@
     "call_id": "CALL-Q1-002",
     "scenario_name": "Grounded Objection & Rate Inquiry",
     "crm_lead": {
-      "lead_id": "LEAD-SBA-5A574412",
-      "created_at": "2026-08-20 07:22:16Z",
+      "lead_id": "LEAD-SBA-D0E0AEF8",
+      "created_at": "2026-08-20 07:34:06Z",
       "status": "QUALIFIED",
       "business_profile": {
         "business_name": "Beacon Tech Services",
@@ -166,32 +166,7 @@
       "call_metadata": {
         "total_turns": 14,
         "call_summary": "Customer completed voice qualification. Lead generated in CRM.",
-        "citations_consulted": [
-          {
-            "record_id": "kb_10062022_mitc__personal_loans_008",
-            "title": "7. PROCESSING FEES:",
-            "category": "pricing_and_fees",
-            "source": "10062022_MITC- Personal Loans.pdf",
-            "version": "1.0",
-            "confidence_score": 0.5632
-          },
-          {
-            "record_id": "kb_10062022_mitc__personal_loans_004",
-            "title": "3. RATE OF INTEREST:",
-            "category": "pricing_and_fees",
-            "source": "10062022_MITC- Personal Loans.pdf",
-            "version": "1.0",
-            "confidence_score": 0.532
-          },
-          {
-            "record_id": "kb_10062022_mitc__personal_loans_005",
-            "title": "4.  INTIMATION OF CHANGE IN INTEREST RATE",
-            "category": "pricing_and_fees",
-            "source": "10062022_MITC- Personal Loans.pdf",
-            "version": "1.0",
-            "confidence_score": 0.4827
-          }
-        ]
+        "citations_consulted": []
       },
       "full_transcript": [
         {
@@ -204,7 +179,7 @@
         },
         {
           "role": "assistant",
-          "content": "Great, thank you for confirming Beacon Tech Services. Could you tell me how many continuous years you've been actively in business?"
+          "content": "Great, thank you for confirming Beacon Tech Services. Could you tell me how many continuous years you\u2019ve been actively in business?"
         },
         {
           "role": "user",
@@ -212,7 +187,7 @@
         },
         {
           "role": "assistant",
-          "content": "I\u2019m glad you asked about the 7(a) loan details. Unfortunately, the information you\u2019re looking for\u2014specifically the maximum loan amount and the applicable interest rate for a 7(a) loan\u2014is not covered in the standard guidelines I have on hand. \n\nI can connect you with one of our senior loan specialists who can pull the exact figures for you and walk you through any other questions you might have. Would you like me to arrange that for you?"
+          "content": "I do not have verified policy guidelines regarding that in our official underwriting guidelines. We specialize in commercial business growth loans, working capital facilities, and collateral-free credit. Would you like to proceed with checking your business loan eligibility?"
         },
         {
           "role": "user",
@@ -220,7 +195,7 @@
         },
         {
           "role": "assistant",
-          "content": "Thanks for confirming the three years in business. Could you share what your gross annual revenue or turnover was for the most recent 12\u2011month period?"
+          "content": "Thanks for confirming the three years. Could you share what your gross annual revenue or turnover was for the most recent 12\u2011month period?"
         },
         {
           "role": "user",
@@ -236,7 +211,7 @@
         },
         {
           "role": "assistant",
-          "content": "Great, thank you. Could you tell me the primary purpose for the $80,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
+          "content": "Great, thanks. Could you tell me the primary purpose for the $80,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
         },
         {
           "role": "user",
@@ -252,7 +227,7 @@
         },
         {
           "role": "assistant",
-          "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-5A574412. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
+          "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-D0E0AEF8. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
         }
       ]
     },
@@ -267,7 +242,7 @@
       },
       {
         "role": "assistant",
-        "content": "Great, thank you for confirming Beacon Tech Services. Could you tell me how many continuous years you've been actively in business?"
+        "content": "Great, thank you for confirming Beacon Tech Services. Could you tell me how many continuous years you\u2019ve been actively in business?"
       },
       {
         "role": "user",
@@ -275,7 +250,7 @@
       },
       {
         "role": "assistant",
-        "content": "I\u2019m glad you asked about the 7(a) loan details. Unfortunately, the information you\u2019re looking for\u2014specifically the maximum loan amount and the applicable interest rate for a 7(a) loan\u2014is not covered in the standard guidelines I have on hand. \n\nI can connect you with one of our senior loan specialists who can pull the exact figures for you and walk you through any other questions you might have. Would you like me to arrange that for you?"
+        "content": "I do not have verified policy guidelines regarding that in our official underwriting guidelines. We specialize in commercial business growth loans, working capital facilities, and collateral-free credit. Would you like to proceed with checking your business loan eligibility?"
       },
       {
         "role": "user",
@@ -283,7 +258,7 @@
       },
       {
         "role": "assistant",
-        "content": "Thanks for confirming the three years in business. Could you share what your gross annual revenue or turnover was for the most recent 12\u2011month period?"
+        "content": "Thanks for confirming the three years. Could you share what your gross annual revenue or turnover was for the most recent 12\u2011month period?"
       },
       {
         "role": "user",
@@ -299,7 +274,7 @@
       },
       {
         "role": "assistant",
-        "content": "Great, thank you. Could you tell me the primary purpose for the $80,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
+        "content": "Great, thanks. Could you tell me the primary purpose for the $80,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
       },
       {
         "role": "user",
@@ -315,42 +290,17 @@
       },
       {
         "role": "assistant",
-        "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-5A574412. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
+        "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-D0E0AEF8. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
       }
     ],
-    "citations_used": [
-      {
-        "record_id": "kb_10062022_mitc__personal_loans_008",
-        "title": "7. PROCESSING FEES:",
-        "category": "pricing_and_fees",
-        "source": "10062022_MITC- Personal Loans.pdf",
-        "version": "1.0",
-        "confidence_score": 0.5632
-      },
-      {
-        "record_id": "kb_10062022_mitc__personal_loans_004",
-        "title": "3. RATE OF INTEREST:",
-        "category": "pricing_and_fees",
-        "source": "10062022_MITC- Personal Loans.pdf",
-        "version": "1.0",
-        "confidence_score": 0.532
-      },
-      {
-        "record_id": "kb_10062022_mitc__personal_loans_005",
-        "title": "4.  INTIMATION OF CHANGE IN INTEREST RATE",
-        "category": "pricing_and_fees",
-        "source": "10062022_MITC- Personal Loans.pdf",
-        "version": "1.0",
-        "confidence_score": 0.4827
-      }
-    ]
+    "citations_used": []
   },
   {
     "call_id": "CALL-Q1-003",
     "scenario_name": "Out-of-Scope Crypto Query (Safe Fallback)",
     "crm_lead": {
-      "lead_id": "LEAD-SBA-353F332D",
-      "created_at": "2026-08-20 07:22:58Z",
+      "lead_id": "LEAD-SBA-AAD1DB9E",
+      "created_at": "2026-08-20 07:34:39Z",
       "status": "QUALIFIED",
       "business_profile": {
         "business_name": "Apex Holdings",
@@ -387,7 +337,7 @@
         },
         {
           "role": "assistant",
-          "content": "Got it, Apex Holdings. Could you tell me how many continuous years you\u2019ve been actively in business?"
+          "content": "Got it, Apex Holdings. Could you tell me how many continuous years you've been actively operating?"
         },
         {
           "role": "user",
@@ -403,7 +353,7 @@
         },
         {
           "role": "assistant",
-          "content": "Thanks for confirming. Could you share roughly what your gross annual revenue or turnover has been over the past 12\u202fmonths?"
+          "content": "Thanks for confirming the 2\u2011year track record. Could you share what your gross annual revenue or turnover was for the most recent 12\u2011month period?"
         },
         {
           "role": "user",
@@ -411,7 +361,7 @@
         },
         {
           "role": "assistant",
-          "content": "Great, thank you. What loan amount are you looking to secure, and could you briefly share the primary purpose for the funds?"
+          "content": "Got it, thank you. How much funding are you looking to borrow for Apex\u202fHoldings?"
         },
         {
           "role": "user",
@@ -419,7 +369,7 @@
         },
         {
           "role": "assistant",
-          "content": "Got it. Could you let me know the primary purpose for the $50,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
+          "content": "Great, thanks. Could you tell me the primary purpose for the $50,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
         },
         {
           "role": "user",
@@ -435,7 +385,7 @@
         },
         {
           "role": "assistant",
-          "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-353F332D. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
+          "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-AAD1DB9E. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
         }
       ]
     },
@@ -450,7 +400,7 @@
       },
       {
         "role": "assistant",
-        "content": "Got it, Apex Holdings. Could you tell me how many continuous years you\u2019ve been actively in business?"
+        "content": "Got it, Apex Holdings. Could you tell me how many continuous years you've been actively operating?"
       },
       {
         "role": "user",
@@ -466,7 +416,7 @@
       },
       {
         "role": "assistant",
-        "content": "Thanks for confirming. Could you share roughly what your gross annual revenue or turnover has been over the past 12\u202fmonths?"
+        "content": "Thanks for confirming the 2\u2011year track record. Could you share what your gross annual revenue or turnover was for the most recent 12\u2011month period?"
       },
       {
         "role": "user",
@@ -474,7 +424,7 @@
       },
       {
         "role": "assistant",
-        "content": "Great, thank you. What loan amount are you looking to secure, and could you briefly share the primary purpose for the funds?"
+        "content": "Got it, thank you. How much funding are you looking to borrow for Apex\u202fHoldings?"
       },
       {
         "role": "user",
@@ -482,7 +432,7 @@
       },
       {
         "role": "assistant",
-        "content": "Got it. Could you let me know the primary purpose for the $50,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
+        "content": "Great, thanks. Could you tell me the primary purpose for the $50,000 loan\u2014such as working capital, inventory, equipment purchase, or something else?"
       },
       {
         "role": "user",
@@ -498,7 +448,7 @@
       },
       {
         "role": "assistant",
-        "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-353F332D. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
+        "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-AAD1DB9E. Our commercial lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix AI!"
       }
     ],
     "citations_used": []
@@ -507,8 +457,8 @@
     "call_id": "CALL-Q1-004",
     "scenario_name": "Human Escalation Request",
     "crm_lead": {
-      "lead_id": "LEAD-SBA-0A73F0B1",
-      "created_at": "2026-08-20 07:23:10Z",
+      "lead_id": "LEAD-SBA-DED52522",
+      "created_at": "2026-08-20 07:34:51Z",
       "status": "QUALIFIED",
       "business_profile": {
         "business_name": "Pinnacle Construction",

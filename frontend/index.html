@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=65">
+  <link rel="stylesheet" href="css/style.css?v=70">
 </head>
 <body>
 
@@ -264,6 +264,30 @@
           </div>
         </div>
 
+        <!-- HERO CALL ACTION CARD (MATCHING Q1) -->
+        <div class="hero-call-card" style="margin-top: 14px; margin-bottom: 14px;">
+          <div class="call-status-group">
+            <span id="q3-call-status-dot" class="status-dot ready"></span>
+            <span id="q3-call-status-label" class="status-label">Ready</span>
+            <div id="q3-waveform-bars" class="waveform-anim hidden">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="call-actions-group">
+            <button id="q3-btn-start-call" class="btn-call-primary">
+              <span class="btn-icon">🎤</span> Start call
+            </button>
+            <button id="q3-btn-mic-toggle" class="btn-call-mic hidden">
+              <span class="btn-icon">🎙️</span> <span id="q3-mic-toggle-text">Hold to Speak</span>
+            </button>
+            <button id="q3-btn-end-call" class="btn-call-danger hidden">
+              <span class="btn-icon">❌</span> End call
+            </button>
+            <button id="q3-btn-clear-chat" class="btn-clean-ghost">Clear</button>
+          </div>
+        </div>
+
         <!-- SCENARIO RUNNER & CALL PLAYER -->
         <div class="q3-scenario-bar">
           <div class="q3-scenario-select-box">
@@ -470,9 +494,9 @@
 
   </div>
 
-  <script src="js/q1_voice_caller.js?v=65"></script>
-  <script src="js/q2_kb_inspector.js?v=65"></script>
-  <script src="js/q3_multilingual.js?v=65"></script>
-  <script src="js/q4_agent_cockpit.js?v=65"></script>
+  <script src="js/q1_voice_caller.js?v=70"></script>
+  <script src="js/q2_kb_inspector.js?v=70"></script>
+  <script src="js/q3_multilingual.js?v=70"></script>
+  <script src="js/q4_agent_cockpit.js?v=70"></script>
 </body>
 </html>
