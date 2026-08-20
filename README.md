@@ -6,40 +6,55 @@ Darwix AI Voice Bot is a full-stack, enterprise-grade conversational intelligenc
 
 ## 1. System Architecture
 
-The platform operates on a modular, multi-tier real-time architecture:
+The platform is engineered around four interconnected subsystems sharing a unified speech, retrieval, and governance foundation:
 
 ```mermaid
 flowchart TD
-    subgraph Ingestion & Audio Streaming
-        A1["Inbound Audio Stream / WebRTC"] --> A2["Audio Chunk Buffer (2.5s Slices)"]
+    %% SUB-SYSTEM 1: MULTI-FORMAT KNOWLEDGE BASE (Q2)
+    subgraph S1["1. Multi-Format Hybrid Knowledge Base (Q2)"]
+        D1["Raw Documents<br/>(PDF, CSV Tables, HTML, TXT, MD)"] --> D2["PII Redaction & Sanitizer<br/>(PAN, Aadhaar, Phone, Email)"]
+        D2 --> D3["Universal Hierarchical Chunker<br/>(Section → Heading → Sentence)"]
+        D3 --> D4A["Dense Vector Store<br/>(all-MiniLM-L6-v2 + FAISS)"]
+        D3 --> D4B["Sparse Lexical Index<br/>(BM25Okapi Keyword Engine)"]
+        D4A & D4B --> D5["Reciprocal Rank Fusion (RRF)<br/>& Dual-Confidence Gate"]
     end
 
-    subgraph Speech & Language Processing
-        A2 --> B1["Streaming ASR (Groq Whisper Large v3)"]
-        B1 --> B2["Speaker Diarization (Agent vs Customer)"]
-        B2 --> B3["Sliding Window Dialogue Context"]
+    %% SUB-SYSTEM 2: KNOWLEDGE-GROUNDED VOICE AGENT (Q1)
+    subgraph S2["2. Grounded Voice Agent & CRM Automation (Q1)"]
+        U1["User Audio / Microphone"] --> U2["Speech-to-Text (Groq Whisper)"]
+        U2 --> U3["Underwriting Rules Engine & State Machine"]
+        D5 -->|Grounded Policy Context| U4["LLM Reasoning (Grounded Alex)"]
+        U3 --> U4
+        U4 --> U5["Neural TTS Audio Output"]
+        U4 --> U6["Automated CRM Lead Webhook<br/>(Underwriting Flags & Credit Score)"]
     end
 
-    subgraph Grounding & Knowledge Engine
-        B3 --> C1["Multi-Format Parser (PDF, CSV, HTML, TXT)"]
-        C1 --> C2["PII Redaction & Hierarchical Chunker"]
-        C2 --> C3["Hybrid Index (FAISS Dense + BM25 Sparse)"]
-        C3 --> C4["Dual-Confidence Grounding Gate"]
+    %% SUB-SYSTEM 3: MULTILINGUAL VOICE BOTS (Q3)
+    subgraph S3["3. Multilingual Voice Bots (Q3 - SE Asia)"]
+        M1["Regional Dialect Input<br/>(Taglish / Bahasa Indonesia)"] --> M2["Language-Primed ASR<br/>(tl / id Prompt Conditioning)"]
+        M2 --> M3A["🇵🇭 Maria Santos (PH Bancassurance)<br/>• Taglish Code-Switching & po/opo<br/>• 31-Day Grace Period & Riders"]
+        M2 --> M3B["🇮🇩 Dewi Lestari (ID Multifinance)<br/>• Formal/Colloquial Bahasa<br/>• Javanese Dialect (nuwun sewu/nggih)<br/>• OJK Restructuring & Denda"]
+        M3A & M3B --> M4["Zero-English Fallback Guardrail"]
+        M4 --> M5["Native Neural TTS (fil-PH / id-ID)"]
     end
 
-    subgraph Real-Time Intelligence & Governance
-        B3 --> D1["Multi-Signal Reasoning Engine"]
-        D1 --> D2["Nudge Governor (Anti-Fatigue & Noise Gate)"]
-        D2 --> D3["Sub-Second Delivery (P50: 563ms)"]
-    end
-
-    subgraph Outputs & Interfaces
-        C4 --> E1["Grounded Voice Agent (Alex)"]
-        D3 --> E2["Live Agent Assist Cockpit"]
-        B3 --> E3["Multilingual Bots (PH Taglish / ID Bahasa)"]
-        E1 --> E4["Core Banking CRM Webhook"]
+    %% SUB-SYSTEM 4: REAL-TIME STREAMING NUDGES (Q4)
+    subgraph S4["4. Real-Time Call Intelligence & Live Nudges (Q4)"]
+        C1["Live Call Audio Stream<br/>(1x Real-Time 2.5s Slices)"] --> C2["Streaming ASR & Diarization<br/>(Agent vs Customer Attribution)"]
+        C2 --> C3["Multi-Signal Semantic Extractor<br/>• Compliance Gap Detection<br/>• Missed Cross-Sell Trigger<br/>• Rising Frustration Sentinel<br/>• Payment Hardship Recognizer"]
+        C3 --> C4["5-Rule Nudge Governor<br/>• ≥75% Confidence Filter<br/>• 30s Deduplication Gate<br/>• CRITICAL Priority Preemption<br/>• 12s Cooldown & Noise Suppressor"]
+        C4 --> C5["Live Agent Assist Cockpit<br/>(Sub-Second P50: 563ms Display)"]
     end
 ```
+
+### Subsystem Interaction Matrix
+
+| Subsystem | Input Source | Primary Processing Engines | Output / Artifact |
+| :--- | :--- | :--- | :--- |
+| **Knowledge Base (Q2)** | Unstructured PDFs, CSV tables, HTML, TXT | Regex PII Redactor, Hierarchical Chunker, FAISS + BM25 Hybrid Indexer | Grounded context embeddings & 5 benchmark test verdicts |
+| **Voice Agent (Q1)** | Web microphone / text prompt | Whisper Large v3, Commercial Underwriting Engine, Groq LLM | Audio speech stream & structured CRM lead payloads |
+| **Multilingual Bots (Q3)** | Taglish / Bahasa audio & text | Language-Conditioned Whisper, Cultural Persona Prompts, Zero-English Fallback | Native voice audio (`fil-PH`, `id-ID`) & domain glossary tags |
+| **Live Nudges Cockpit (Q4)** | 1x Real-time call audio stream | Streaming Diarizer, Multi-Signal Intent Extractor, 5-Rule Anti-Fatigue Governor | Real-time pop-up guidance cards & sub-second latency telemetry |
 
 ---
 
