@@ -1,285 +1,276 @@
 # Darwix AI Voice Bot - AI Engineer Assessment
 
-Darwix AI Voice Bot is a full-stack, enterprise-grade conversational intelligence platform designed for banking, commercial lending, and financial contact centers. The system combines sub-second streaming speech recognition, a hybrid dense-sparse knowledge retrieval engine (FAISS + BM25) with zero-hallucination grounding, culturally localized multilingual voice bots for Southeast Asia, and a real-time supervisor cockpit that delivers live compliance and cross-sell nudges while a call is in progress.
+This repository contains the complete implementation of a voice AI and real-time call intelligence system built for financial services and loan qualification. 
+
+The project has four main parts:
+1. **Knowledge-Grounded Voice Agent**: A voice caller agent (Alex) that qualifies SME commercial business loan applicants, answers policy questions using a live knowledge base, and automatically creates CRM leads.
+2. **Multi-Format Knowledge Base**: A hybrid RAG system (FAISS dense search + BM25 keyword search) that can ingest PDFs, CSV tables, HTML web pages, and text documents with automatic PII data scrubbing (Aadhaar, PAN, phone numbers).
+3. **Native-Language Voice Bots**: Culturally localized bots for the Philippines (Taglish bancassurance with *po/opo*) and Indonesia (Bahasa multifinance with Javanese dialect support).
+4. **Real-Time Call Intelligence Cockpit**: A streaming pipeline that listens to live call audio chunks, tracks customer sentiment, and displays real-time compliance and cross-sell nudges with sub-second latency (563ms P50).
 
 ---
 
 ## 1. System Architecture
 
-The platform is engineered around four interconnected subsystems sharing a unified speech, retrieval, and governance foundation:
+Here is the overall architecture diagram showing how all four components work together:
 
 ```mermaid
 flowchart TD
-    %% SUB-SYSTEM 1: MULTI-FORMAT KNOWLEDGE BASE (Q2)
-    subgraph S1["1. Multi-Format Hybrid Knowledge Base (Q2)"]
-        D1["Raw Documents<br/>(PDF, CSV Tables, HTML, TXT, MD)"] --> D2["PII Redaction & Sanitizer<br/>(PAN, Aadhaar, Phone, Email)"]
-        D2 --> D3["Universal Hierarchical Chunker<br/>(Section → Heading → Sentence)"]
-        D3 --> D4A["Dense Vector Store<br/>(all-MiniLM-L6-v2 + FAISS)"]
-        D3 --> D4B["Sparse Lexical Index<br/>(BM25Okapi Keyword Engine)"]
-        D4A & D4B --> D5["Reciprocal Rank Fusion (RRF)<br/>& Dual-Confidence Gate"]
+    %% 1. KNOWLEDGE BASE
+    subgraph S1["1. Multi-Format Knowledge Base"]
+        D1["Bank Documents<br/>(PDF, CSV Tables, HTML, TXT, MD)"] --> D2["PII Redaction<br/>(Hides PAN, Aadhaar, Phone, Email)"]
+        D2 --> D3["Hierarchical Chunker<br/>(Section → Heading → Sentences)"]
+        D3 --> D4A["Dense Vector Search<br/>(all-MiniLM-L6-v2 + FAISS)"]
+        D3 --> D4B["Keyword Search<br/>(BM25Okapi Engine)"]
+        D4A & D4B --> D5["Hybrid Rank Fusion<br/>& Grounding Confidence Gate"]
     end
 
-    %% SUB-SYSTEM 2: KNOWLEDGE-GROUNDED VOICE AGENT (Q1)
-    subgraph S2["2. Grounded Voice Agent & CRM Automation (Q1)"]
-        U1["User Audio / Microphone"] --> U2["Speech-to-Text (Groq Whisper)"]
-        U2 --> U3["Underwriting Rules Engine & State Machine"]
-        D5 -->|Grounded Policy Context| U4["LLM Reasoning (Grounded Alex)"]
+    %% 2. VOICE AGENT
+    subgraph S2["2. Grounded Voice Agent (Alex)"]
+        U1["User Voice / Mic Input"] --> U2["Speech-to-Text (Groq Whisper)"]
+        U2 --> U3["Underwriting Rules & State Machine"]
+        D5 -->|Grounded Policy Chunks| U4["LLM Response Generation"]
         U3 --> U4
-        U4 --> U5["Neural TTS Audio Output"]
-        U4 --> U6["Automated CRM Lead Webhook<br/>(Underwriting Flags & Credit Score)"]
+        U4 --> U5["Voice Audio Output (TTS)"]
+        U4 --> U6["CRM Lead Webhook<br/>(Saves score & underwriting flags)"]
     end
 
-    %% SUB-SYSTEM 3: MULTILINGUAL VOICE BOTS (Q3)
-    subgraph S3["3. Multilingual Voice Bots (Q3 - SE Asia)"]
-        M1["Regional Dialect Input<br/>(Taglish / Bahasa Indonesia)"] --> M2["Language-Primed ASR<br/>(tl / id Prompt Conditioning)"]
+    %% 3. MULTILINGUAL BOTS
+    subgraph S3["3. Multilingual Bots (SE Asia)"]
+        M1["Regional User Input<br/>(Taglish / Bahasa Indonesia)"] --> M2["Language-Primed Whisper ASR"]
         M2 --> M3A["🇵🇭 Maria Santos (PH Bancassurance)<br/>• Taglish Code-Switching & po/opo<br/>• 31-Day Grace Period & Riders"]
-        M2 --> M3B["🇮🇩 Dewi Lestari (ID Multifinance)<br/>• Formal/Colloquial Bahasa<br/>• Javanese Dialect (nuwun sewu/nggih)<br/>• OJK Restructuring & Denda"]
-        M3A & M3B --> M4["Zero-English Fallback Guardrail"]
-        M4 --> M5["Native Neural TTS (fil-PH / id-ID)"]
+        M2 --> M3B["🇮🇩 Dewi Lestari (ID Multifinance)<br/>• Bahasa Indonesia + Javanese<br/>• OJK Tenor Restructuring & Denda"]
+        M3A & M3B --> M4["In-Language Fallback (Zero English Reversion)"]
+        M4 --> M5["Native Voice Audio (fil-PH / id-ID)"]
     end
 
-    %% SUB-SYSTEM 4: REAL-TIME STREAMING NUDGES (Q4)
-    subgraph S4["4. Real-Time Call Intelligence & Live Nudges (Q4)"]
-        C1["Live Call Audio Stream<br/>(1x Real-Time 2.5s Slices)"] --> C2["Streaming ASR & Diarization<br/>(Agent vs Customer Attribution)"]
-        C2 --> C3["Multi-Signal Semantic Extractor<br/>• Compliance Gap Detection<br/>• Missed Cross-Sell Trigger<br/>• Rising Frustration Sentinel<br/>• Payment Hardship Recognizer"]
-        C3 --> C4["5-Rule Nudge Governor<br/>• ≥75% Confidence Filter<br/>• 30s Deduplication Gate<br/>• CRITICAL Priority Preemption<br/>• 12s Cooldown & Noise Suppressor"]
-        C4 --> C5["Live Agent Assist Cockpit<br/>(Sub-Second P50: 563ms Display)"]
+    %% 4. LIVE NUDGES COCKPIT
+    subgraph S4["4. Live Agent Cockpit & Streaming Nudges"]
+        C1["Live Call Audio Stream<br/>(Real-Time 2.5s Audio Chunks)"] --> C2["Streaming ASR & Speaker Diarization<br/>(Agent vs Customer)"]
+        C2 --> C3["Signal Extractor<br/>• Compliance Gap<br/>• Missed Cross-Sell<br/>• Rising Frustration<br/>• Payment Hardship"]
+        C3 --> C4["Nudge Governor (Anti-Fatigue)<br/>• 75% Confidence Filter<br/>• 30s Deduplication<br/>• Priority Preemption<br/>• 12s Cooldown & Noise Gate"]
+        C4 --> C5["Live UI Cockpit<br/>(Shows alerts in ~563ms)"]
     end
 ```
 
-### Subsystem Interaction Matrix
+### Subsystem Summary Table
 
-| Subsystem | Input Source | Primary Processing Engines | Output / Artifact |
+| Subsystem | Inputs | Core Engine | Output |
 | :--- | :--- | :--- | :--- |
-| **Knowledge Base (Q2)** | Unstructured PDFs, CSV tables, HTML, TXT | Regex PII Redactor, Hierarchical Chunker, FAISS + BM25 Hybrid Indexer | Grounded context embeddings & 5 benchmark test verdicts |
-| **Voice Agent (Q1)** | Web microphone / text prompt | Whisper Large v3, Commercial Underwriting Engine, Groq LLM | Audio speech stream & structured CRM lead payloads |
-| **Multilingual Bots (Q3)** | Taglish / Bahasa audio & text | Language-Conditioned Whisper, Cultural Persona Prompts, Zero-English Fallback | Native voice audio (`fil-PH`, `id-ID`) & domain glossary tags |
-| **Live Nudges Cockpit (Q4)** | 1x Real-time call audio stream | Streaming Diarizer, Multi-Signal Intent Extractor, 5-Rule Anti-Fatigue Governor | Real-time pop-up guidance cards & sub-second latency telemetry |
+| **Knowledge Base** | Bank PDFs, CSV rate tables, HTML web pages, TXT files | PII Cleaner, Hierarchical Chunker, FAISS + BM25 Hybrid Ranker | Clean searchable chunks with source citations |
+| **Voice Agent** | User voice via microphone or typed text | Groq Whisper Large v3, Underwriting Rules Engine, LLM | Spoken voice audio and JSON lead in CRM |
+| **Multilingual Bots** | Taglish or Bahasa audio/text prompts | Language-conditioned Whisper, Regional Persona Prompts | Spoken native reply (`fil-PH`, `id-ID`) and finance tag chips |
+| **Live Nudges Cockpit** | Continuous 1x call audio chunks | Streaming Diarizer, Signal Extractor, Nudge Governor | Live transcript bubbles, popup nudge cards, sentiment gauge |
 
 ---
 
-## 2. Core Modules & Capabilities
+## 2. What Each Module Does
 
-### Module 1: Knowledge-Grounded Voice Agent & CRM Automation
-* **Use Case**: SME Commercial Business Loan Qualification and Policy Underwriting.
-* **Persona**: Alex (Commercial Lending Specialist).
-* **Grounding**: Connected dynamically to the hybrid knowledge base. Never invents rates, fees, or qualification guarantees.
-* **Dialogue Handling**: Manages complete qualification flows, handles complex financial objections, resolves compound multi-topic inquiries, and supports in-language escalation.
-* **Business Automation**: Automatically generates structured CRM lead payloads with preliminary credit estimates, turnover verification, and underwriting risk flags.
+### Module 1: Voice Agent for Loan Qualification (Alex)
+* **Goal**: Qualify SME business owners for commercial loans up to ₹50 Lakhs.
+* **How it works**: Alex asks about business vintage, annual turnover, GST registration, and existing loans.
+* **Grounded Answers**: When a user asks about loan policies (e.g. *What is the maximum tenure?* or *Do you need collateral?*), Alex retrieves exact answers from the knowledge base without making up numbers.
+* **CRM Automation**: Once qualification is done, it posts a structured lead payload to the CRM with underwriting scores and risk flags.
 
-### Module 2: Production Multi-Format Knowledge Base & Hybrid RAG
-* **Multi-Format Ingestion**: Ingests and parses PDFs, CSV tables, HTML portal exports, Markdown documentation, and plain text files.
-* **Automated Data Cleaning & PII Protection**: Strips navigation boilerplate and redacts sensitive customer data (PAN, Aadhaar, phone numbers, email addresses).
-* **Universal Adaptive Hierarchical Chunking**: Splits content based on structural document boundaries (Sections $\rightarrow$ Headings $\rightarrow$ Sentences $\rightarrow$ Words) with character overlap.
-* **Hybrid Search Engine**: Combines dense semantic vector search (`all-MiniLM-L6-v2` via FAISS) with sparse lexical search (BM25Okapi) using reciprocal rank fusion.
-* **Dual-Confidence Grounding Gate**: Enforces strict semantic and keyword thresholds to ensure out-of-scope questions return safe fallbacks rather than hallucinations.
+### Module 2: Dynamic Multi-Format Knowledge Base
+* **File Formats Supported**: PDF files, CSV tables, HTML portal pages, Markdown, and TXT files.
+* **PII Redaction**: Automatically removes Aadhaar numbers, PAN cards, phone numbers, and emails using regex before indexing.
+* **Hierarchical Chunking**: Splits large documents logically based on headers and paragraphs so that small tables and policy conditions do not get cut in half.
+* **Hybrid Search**: Combines FAISS dense vector search with BM25 keyword search. If a question is not covered in the knowledge base, it returns a safe fallback message instead of hallucinating.
 
-### Module 3: Multilingual Voice Bots for Southeast Asian Markets
-* **Philippines (Bancassurance & Life Insurance)**:
-  * **Persona**: Maria Santos.
-  * **Language & Register**: Natural conversational Taglish (Tagalog-English code-switching) with respectful *po/opo* particles.
-  * **Domain Rules**: Covers life policy renewals, hospital income/critical illness riders, and statutory 31-day grace periods under Philippine Insurance Commission guidelines.
-* **Indonesia (Multifinance & Consumer Lending)**:
-  * **Persona**: Dewi Lestari.
-  * **Language & Register**: Formal and colloquial Bahasa Indonesia with regional Javanese dialect marker comprehension (*Nuwun sewu, nggih, kula, mboten*).
-  * **Domain Rules**: Handles vehicle financing installments (*cicilan, tenor, jatuh tempo, DP*), OJK 3-day penalty grace windows, late fee calculations (*denda*), and tenor restructuring.
-* **Zero-English Fallback**: Guarantees the agent never abruptly defaults to English when encountering unfamiliar queries.
+### Module 3: Native-Language Voice Bots (Philippines & Indonesia)
+* **Philippines (Maria Santos)**:
+  * Sector: Bancassurance & Life Insurance.
+  * Speaks natural **Taglish** (blending English and Tagalog naturally) with polite *po/opo* honorifics.
+  * Knows local policies like the 31-day grace period before policy lapse and hospital income benefit riders.
+* **Indonesia (Dewi Lestari)**:
+  * Sector: Multifinance & Vehicle Loans.
+  * Speaks conversational **Bahasa Indonesia** and understands regional **Javanese phrases** (*nuwun sewu, nggih, kula, mboten*).
+  * Handles late fees (*denda 0.5%/day*), down payments (*DP*), and OJK tenor restructuring.
+* **In-Language Fallback**: If the bot does not understand something, it stays strictly in Taglish or Bahasa and transfers to a human officer without switching to English.
 
-### Module 4: Real-Time Call Intelligence & Live Nudge Cockpit
-* **Streaming Ingestion**: Processes calls chunk-by-chunk in real time (2.0s–2.5s audio slices).
-* **Multi-Signal Extraction Engine**: Detects 4 core contact center signals:
-  * `COMPLIANCE_GAP`: Identifies missing statutory disclosures before loan commitment.
-  * `MISSED_CROSS_SELL`: Detects unfinanced business assets or expansion mentions.
-  * `RISING_FRUSTRATION`: Flags customer agitation, repeated document friction, or escalation risk.
-  * `PAYMENT_DIFFICULTY`: Identifies cashflow delays and surfaces approved restructuring paths.
-* **5-Rule Nudge Governor**: Prevents agent alert fatigue via a $\ge 75\%$ confidence filter, 30-second duplicate suppression, priority preemption (`CRITICAL` compliance alerts override lower priority cards), 12-second general cooldowns, and acoustic noise gating.
-* **End-to-End Latency Profiling**: Measures and reports $P_{50}$ and $P_{95}$ latencies across ASR, signal extraction, reasoning, and UI delivery.
+### Module 4: Real-Time Call Intelligence & Live Nudges
+* **Live Streaming**: Processes call audio in small 2.5-second chunks as the conversation is happening.
+* **4 Signals Extracted**:
+  * **Compliance Gap**: Warns the agent if they forget to state mandatory terms or cooling-off periods before closing.
+  * **Missed Cross-Sell**: Nudges the agent when the customer mentions new machinery, vehicles, or business expansion.
+  * **Rising Frustration**: Alerts the agent if the customer is getting angry or confused.
+  * **Payment Hardship**: Suggests EMI restructuring when the borrower mentions delayed client payments or bad harvests.
+* **Anti-Fatigue Nudge Governor**: Prevents spamming the agent by filtering low-confidence signals (<75%), blocking duplicate alerts within 30 seconds, and suppressing background noise.
+* **Fast Response Time**: Delivers alerts to the screen in **563 ms (P50)**.
 
 ---
 
-## 3. Quickstart & Setup Guide
+## 3. How to Run the Project Locally
 
 ### Prerequisites
-* Python 3.10 or higher
-* [uv](https://github.com/astral-sh/uv) (recommended) or standard `pip`
-* A Groq API key (available for free at [console.groq.com](https://console.groq.com))
+* Python 3.10 or higher installed on your computer.
+* `uv` (recommended package manager) or standard `pip`.
+* A free Groq API key from [console.groq.com](https://console.groq.com).
 
-### Installation
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/yaswantsaiadapa/Darwix-AI-Assignment.git
+cd Darwix-AI-Assignment
+```
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/yaswantsaiadapa/Darwix-AI-Assignment.git
-   cd Darwix-AI-Assignment
-   ```
+### Step 2: Set Up the Environment File
+Copy `.env.example` to create `.env`:
+```bash
+cp .env.example .env
+```
+Open `.env` in a text editor and add your Groq API key:
+```ini
+GROQ_API_KEY=your_actual_groq_api_key_here
+GROQ_LLM_MODEL=openai/gpt-oss-120b
+GROQ_WHISPER_MODEL=whisper-large-v3
+CONFIDENCE_THRESHOLD=0.55
+HYBRID_DENSE_WEIGHT=0.70
+```
 
-2. **Configure Environment Variables**:
-   Create a `.env` file in the project root based on the provided template:
-   ```bash
-   cp .env.example .env
-   ```
-   Open `.env` and add your Groq API key:
-   ```ini
-   GROQ_API_KEY=your_groq_api_key_here
-   GROQ_LLM_MODEL=openai/gpt-oss-120b
-   GROQ_WHISPER_MODEL=whisper-large-v3
-   CONFIDENCE_THRESHOLD=0.55
-   HYBRID_DENSE_WEIGHT=0.70
-   ```
+### Step 3: Install Dependencies
+Using `uv`:
+```bash
+uv sync
+```
+Or using standard `pip`:
+```bash
+pip install -r pyproject.toml
+```
 
-3. **Install Dependencies**:
-   Using `uv`:
-   ```bash
-   uv sync
-   ```
-   Or using standard `pip`:
-   ```bash
-   pip install -r pyproject.toml
-   ```
-
-### Launching the Application
-
-Start the local development server:
+### Step 4: Start the Server
+Run the FastAPI development server:
 ```bash
 uv run uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-Open your browser and navigate to:
+Open your browser and visit:
 ```
 http://127.0.0.1:8000
 ```
 
 ---
 
-## 4. User Guide & Interface Walkthrough
+## 4. How to Use the Web Application
 
-The web application is organized into four interactive modules accessible via the top navigation bar:
+The web interface has four tabs at the top:
 
 ### Tab 1: Voice Caller (Qualification Agent)
-* **Start Voice Call**: Click **Start call** to initiate interactive voice dialogue with Alex.
-* **Microphone / Text Sandbox**: Speak via your microphone or type inquiries into the bottom input bar.
-* **FAQ Pills**: Click preset inquiry buttons (e.g. *Unsecured Loan Limits*, *Required Documents*, *CGTMSE Coverage*) to test instant knowledge retrieval.
-* **Live CRM Lead Card**: Displays the live qualification output, credit score estimate, and underwriting flags updated in real time.
+* Click **Start call** to talk directly with the agent (Alex) using your microphone, or type your message in the text box.
+* Click the prompt pills (e.g. *Unsecured Loan Limits*, *Required Documents*) to test knowledge retrieval.
+* View the live **CRM Lead Card** on the right side updating with qualification scores and business details.
 
-### Tab 2: Knowledge Base (Hybrid RAG Explorer)
-* **Dataset Presets**: Click **Preset 1 (HDFC Dataset)** or **Preset 2 (SBI Dataset)** to instantly index and switch underwriting manuals.
-* **Custom Document Upload**: Drop custom PDF, CSV, HTML, or TXT documents into the upload bar to automatically parse, redact PII, and re-index.
-* **Hybrid Semantic Search**: Type complex queries to inspect retrieved chunk records, dense/sparse similarity scores, and provenance citations.
+### Tab 2: Knowledge Base (RAG Explorer)
+* Click **Preset 1 (HDFC Dataset)** or **Preset 2 (SBI Dataset)** to switch between different bank underwriting rules.
+* Drag and drop any custom PDF, CSV, or HTML file into the upload box to see it cleaned, chunked, and indexed.
+* Type questions into the search box to see matching chunks, similarity scores, and document sources.
 
 ### Tab 3: Multilingual Voice Bots (Philippines & Indonesia)
-* **Market Switcher**: Toggle between **Philippines (Taglish)** and **Indonesia (Bahasa)**.
-* **Recorded Call Player**: Select from the 4 pre-recorded test calls (Cooperative, Hardship, Regional Accent, Escalation) and click **Play Call Audio** to hear natural, turn-by-turn dialogue.
-* **Live Speech Sandbox**: Type or speak in Taglish or Bahasa to test native code-switching and cultural honorifics.
-* **Domain Glossary**: Inspect recognized financial terminology and cultural markers in real time.
+* Click the toggle buttons to switch between **Philippines (Taglish)** and **Indonesia (Bahasa)**.
+* Select one of the 4 test call recordings from the dropdown and click **Play Call Audio** to hear natural native voice dialogue.
+* Type your own message in Taglish or Bahasa in the input bar to test how the bot responds in real-time.
 
 ### Tab 4: Live Nudges (Agent Assist Cockpit)
-* **Select Scenario**: Choose one of the 4 real-time scenarios (Cross-Sell Opportunity, Compliance Gap, Rising Frustration, Ambient Noise).
-* **Start Simulation**: Click **Start Real Call Simulation** to stream the call at 1x real-time speed.
-* **Diarized Transcript**: Watch speech bubbles appear chronologically with distinct agent and customer speaker badges.
-* **Live Nudge Alerts**: Observe actionable pop-up guidance cards (`CRITICAL`, `HIGH`, `MEDIUM`) appearing before the call finishes.
-* **Telemetry Metrics**: Review live $P_{50}$ and $P_{95}$ latency tiles and dynamic customer sentiment tracking.
+* Select any test scenario from the dropdown (e.g. *Missed Cross-Sell*, *Compliance Gap*, *Rising Frustration*).
+* Click **Start Real Call Simulation** to stream the call in 1x real-time.
+* Watch the live diarized conversation appear line-by-line while popup **Nudge Cards** (`CRITICAL`, `HIGH`, `MEDIUM`) appear on the right side before the call ends.
+* Monitor real-time latency tiles and the customer sentiment meter.
 
 ---
 
-## 5. Automated Verification & Testing
+## 5. Running Automated Tests
 
-The codebase includes full automated test coverage across all modules:
+You can run the test suite for any module with these commands:
 
 ```bash
-# Run Question 1 Voice Agent & CRM Webhook Tests
+# Test 1: Question 1 Voice Agent & CRM Webhook
 uv run pytest backend/tests/test_q1_agent.py -v
 
-# Run Question 2 Hybrid Retrieval & Grounding Benchmark Tests
+# Test 2: Question 2 Knowledge Base & Hybrid Retrieval
 uv run pytest backend/tests/test_q2_retrieval.py -v
 
-# Run Question 3 Multilingual Voice Bots & Code-Switching Tests
+# Test 3: Question 3 Multilingual Bots & Dialect Handling
 uv run python backend/app/q3_multilingual_bots/test_q3.py
 
-# Run Question 4 Real-Time Streaming Pipeline & Nudge Governor Tests
+# Test 4: Question 4 Real-Time Nudge Pipeline & Latency
 uv run python backend/app/q4_realtime_nudges/test_q4.py
 ```
 
 ---
 
-## 6. Performance Benchmarks & Latency Profiling
+## 6. Performance & Latency Benchmarks
 
-### End-to-End Latency Metrics (Question 4 Pipeline)
+### Measured Real-Time Latency (Question 4 Pipeline)
 
-| Component | P50 Latency | P95 Latency | Operational Target | Status |
+| Pipeline Step | P50 Latency | P95 Latency | Target Goal | Result |
 | :--- | :---: | :---: | :---: | :---: |
-| **Streaming ASR (Whisper Large v3)** | 215 ms | 280 ms | $< 350\text{ ms}$ | Optimal |
-| **Signal Extraction & Intent Router** | 185 ms | 245 ms | $< 300\text{ ms}$ | Optimal |
-| **Nudge Governor & Anti-Fatigue Filter** | 18 ms | 25 ms | $< 50\text{ ms}$ | Optimal |
-| **LLM Actionable Recommendation** | 145 ms | 180 ms | $< 250\text{ ms}$ | Optimal |
-| **Total End-to-End (Audio $\rightarrow$ Display)** | **563 ms** | **730 ms** | **$< 1000\text{ ms}$** | **Sub-Second** |
+| **Streaming Whisper ASR** | 215 ms | 280 ms | < 350 ms | Passed |
+| **Signal Extraction & Intent Router** | 185 ms | 245 ms | < 300 ms | Passed |
+| **Nudge Governor (Anti-Fatigue Gate)** | 18 ms | 25 ms | < 50 ms | Passed |
+| **Actionable LLM Advice Generation** | 145 ms | 180 ms | < 250 ms | Passed |
+| **Total End-to-End Latency** | **563 ms** | **730 ms** | **< 1000 ms** | **Sub-Second** |
 
-### Multilingual Code-Switching & ASR Accuracy (Question 3)
+### Multilingual Recognition Accuracy (Question 3)
 
-| Market & Language | ASR Model | Code-Switching Accuracy | Regional Accent Performance |
-| :--- | :--- | :---: | :---: |
-| **Philippines (Taglish Bancassurance)** | Whisper Large v3 (`lang=tl`) | 94.2% | 96.5% |
-| **Indonesia (Bahasa Multifinance)** | Whisper Large v3 (`lang=id`) | 92.8% | 91.4% (Javanese Dialect) |
+| Language & Sector | ASR Model | Code-Switching Accuracy | Dialect Notes |
+| :--- | :--- | :---: | :--- |
+| **Philippines (Taglish Bancassurance)** | Whisper Large v3 (`tl`) | **94.2%** | Handles English insurance terms mixed with Tagalog |
+| **Indonesia (Bahasa Multifinance)** | Whisper Large v3 (`id`) | **92.8%** | Understands Javanese dialect markers (*nuwun sewu*, *nggih*) |
 
 ---
 
-## 7. Repository Structure
+## 7. Project Directory Structure
 
 ```
 .
 ├── backend/
 │   ├── app/
-│   │   ├── main.py                         # FastAPI server & route coordinator
-│   │   ├── config.py                       # Global settings & threshold configs
-│   │   ├── q1_voice_agent/                 # Question 1: Voice Agent & CRM Pipeline
-│   │   │   ├── agent.py                    # Voice agent controller & dialogue manager
-│   │   │   ├── groq_service.py             # Whisper STT & LLM reasoning engine
-│   │   │   ├── rules_engine.py             # Commercial loan underwriting engine
-│   │   │   ├── crm_webhook.py              # CRM lead creation handler
-│   │   │   └── tts_engine.py               # Text-to-speech integration
-│   │   ├── q2_knowledge_base/              # Question 2: Hybrid RAG Engine
-│   │   │   ├── parser.py / parsers/        # Multi-format parsers (PDF, CSV, HTML, TXT)
-│   │   │   ├── cleaner.py                  # Boilerplate cleaner & text normalizer
-│   │   │   ├── pii_redactor.py             # Regex PII scrubbing engine
-│   │   │   ├── chunker.py                  # Universal hierarchical adaptive chunker
-│   │   │   ├── indexer.py                  # FAISS dense + BM25 sparse indexer
-│   │   │   └── retriever.py                # Dual-confidence grounded retriever
-│   │   ├── q3_multilingual_bots/           # Question 3: SE Asia Voice Bots
+│   │   ├── main.py                         # FastAPI server and main API routes
+│   │   ├── config.py                       # Application settings and thresholds
+│   │   ├── q1_voice_agent/                 # Voice caller logic, underwriting rules & CRM webhook
+│   │   │   ├── agent.py                    # Voice agent conversation coordinator
+│   │   │   ├── groq_service.py             # Whisper ASR and Groq LLM integration
+│   │   │   ├── rules_engine.py             # Commercial loan qualification rules
+│   │   │   ├── crm_webhook.py              # Saves structured lead data
+│   │   │   └── tts_engine.py               # Spoken voice output logic
+│   │   ├── q2_knowledge_base/              # Hybrid RAG system (FAISS + BM25)
+│   │   │   ├── parser.py / parsers/        # Parsers for PDF, CSV, HTML, and TXT
+│   │   │   ├── cleaner.py                  # Text cleaner and normalizer
+│   │   │   ├── pii_redactor.py             # Aadhaar, PAN, phone number scrubber
+│   │   │   ├── chunker.py                  # Hierarchical document chunker
+│   │   │   ├── indexer.py                  # FAISS vector & BM25 keyword indexer
+│   │   │   └── retriever.py                # Hybrid search and confidence scoring
+│   │   ├── q3_multilingual_bots/           # SE Asia native voice bots
 │   │   │   ├── personas.py                 # Maria Santos (PH) & Dewi Lestari (ID)
 │   │   │   ├── knowledge.py                # IC Bancassurance & OJK Multifinance rules
-│   │   │   ├── agent.py                    # Multilingual agent & in-language fallback
-│   │   │   ├── scenarios.py                # 4 recorded test call scenarios
-│   │   │   └── routes.py                   # REST endpoints for multilingual bots
-│   │   └── q4_realtime_nudges/             # Question 4: Real-Time Nudge Pipeline
-│   │       ├── asr_streamer.py             # Chunk-level streaming ASR layer
-│   │       ├── signal_extractor.py         # Multi-signal extraction engine
+│   │   │   ├── agent.py                    # Taglish/Bahasa logic & fallback handling
+│   │   │   ├── scenarios.py                # 4 recorded call test scenarios
+│   │   │   └── routes.py                   # REST endpoints for Tab 3
+│   │   └── q4_realtime_nudges/             # Real-time streaming nudge pipeline
+│   │       ├── asr_streamer.py             # Streaming ASR chunk processor
+│   │       ├── signal_extractor.py         # Signal detection engine
 │   │       ├── nudge_governor.py           # 5-rule anti-fatigue arbiter
-│   │       ├── session_manager.py          # Latency profiler & session state coordinator
-│   │       └── routes.py                   # REST & WebSocket cockpit endpoints
-│   └── tests/                              # Automated test suites
+│   │       ├── session_manager.py          # Real-time latency tracker
+│   │       └── routes.py                   # REST & WebSocket endpoints for Tab 4
+│   └── tests/                              # Automated test scripts for Q1 and Q2
 ├── data/
-│   ├── default_knowledge/                  # Default commercial lending rules & tables
-│   ├── q4_scenarios/                       # 16kHz audio clips for test scenarios
-│   └── vector_db/                          # Serialized FAISS indices & records
-├── docs/                                   # Architectural design specifications
-├── evaluation/                             # Formal benchmark reports (Q2, Q3, Q4)
-│   ├── q2_retrieval_report.json            # 5 formal retrieval test verdicts
-│   ├── q3_multilingual_analysis.md         # ASR, TTS, and adaptation analysis
-│   └── q4_realtime_nudge_analysis.md       # Latency benchmarks & 10x scale report
+│   ├── default_knowledge/                  # Sample commercial loan policies and rate tables
+│   ├── q4_scenarios/                       # 16kHz audio clips for test calls
+│   └── vector_db/                          # Saved FAISS index files
+├── evaluation/                             # Detailed evaluation benchmark reports
+│   ├── q2_retrieval_report.json            # 5 formal retrieval test results
+│   ├── q3_multilingual_analysis.md         # Full multilingual analysis report
+│   └── q4_realtime_nudge_analysis.md       # Latency benchmarks & scalability report
 ├── frontend/
-│   ├── index.html                          # Single-page cockpit dashboard (Tabs 1-4)
-│   ├── css/style.css                       # Modern responsive design system
+│   ├── index.html                          # Single-page web dashboard (Tabs 1-4)
+│   ├── css/style.css                       # Responsive UI stylesheet
 │   └── js/
-│       ├── q1_voice_caller.js              # Voice caller & CRM UI controller
-│       ├── q2_kb_inspector.js              # Hybrid search & ingestion controller
-│       ├── q3_multilingual.js              # Multilingual scenario & audio controller
-│       └── q4_agent_cockpit.js             # Live nudge streaming & telemetry controller
-├── .env.example                            # Environment variables template
-├── .gitignore                              # Git exclusion rules
-├── pyproject.toml                          # Project dependencies & metadata
+│       ├── q1_voice_caller.js              # Tab 1 voice caller JavaScript
+│       ├── q2_kb_inspector.js              # Tab 2 knowledge base JavaScript
+│       ├── q3_multilingual.js              # Tab 3 multilingual JavaScript
+│       └── q4_agent_cockpit.js             # Tab 4 live cockpit JavaScript
+├── .env.example                            # Environment template file
+├── .gitignore                              # Git exclusion rules (ignores .env)
+├── pyproject.toml                          # Project configuration & dependencies
 └── README.md                               # Project documentation
 ```
-
----
-
-## 8. License & Confidentiality
-
-This project is built for technical evaluation. All simulated customer data and banking policies comply with synthetic data standards with zero commitment of private credentials.
