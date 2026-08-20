@@ -1,0 +1,25 @@
+# HDFC Bank MSME Lending FAQ & Application Verification SOP
+**Document ID**: HDFC-MSME-FAQ-2026
+
+## 1. Frequently Answered Questions (Commercial Lending Desk)
+Q: What is the maximum loan amount under HDFC Unsecured Business Growth Loan?
+A: HDFC Bank sanctions up to ₹50 Lakhs under the unsecured business growth loan without physical collateral.
+
+Q: Can a newly incorporated startup (less than 1 year old) qualify for an unsecured business loan?
+A: No. HDFC policy mandates a minimum operational business vintage of 3 continuous years and minimum ₹40 Lakhs turnover. Startups can apply under CGTMSE collateral-free facilities if sponsored under recognized incubation or Mudra scheme.
+
+Q: Are loans provided for speculative cryptocurrency investments?
+A: No. HDFC commercial underwriting guidelines strictly prohibit credit extension for cryptocurrency trading, bitcoin mining, or speculative real estate hoarding.
+
+## 2. Sample Commercial Loan Application (Intake Verification Record)
+Applicant Profile:
+- Business Legal Name: Falcon Translogistics Private Limited
+- Key Director / Applicant: Vikramaditya Singh Rathore
+- Applicant Aadhaar: 4321 8765 9876
+- Business PAN: FALCON1234F
+- Contact Mobile: +91-9823456789
+- Business Email: vikram@falcontlogistics.in
+- Disbursement Current A/c: 50200012345678
+- Requested Facility: ₹35,00,000 (Thirty Five Lakhs)
+- Annual Turnover: ₹1,40,00,000 (One Crore Forty Lakhs)
+- Years in Operation: 4 Years

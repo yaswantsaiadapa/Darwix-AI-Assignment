@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darwix AI Voice Assistant - Commercial Lending & Knowledge Retrieval</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=60">
+</head>
+<body>
+
+  <!-- =========================================================================
+       0. SLIDE-OUT LEFT BENCHMARK DRAWER (GEMINI / CHATGPT SIDE PANEL)
+       Fixed off-screen by default (left: -440px), does NOT affect main page flow
+       ========================================================================= -->
+  <div id="drawer-overlay" class="drawer-overlay hidden"></div>
+  
+  <aside id="benchmark-sidebar" class="benchmark-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title-group">
+        <span class="drawer-icon">📊</span>
+        <h3>Q2 Benchmark Evaluation</h3>
+      </div>
+      <button id="btn-close-drawer" class="btn-drawer-close" title="Close sidebar">✕</button>
+    </div>
+    <p class="drawer-subtext">Automated precision verdicts on 5 formal query classes</p>
+    
+    <div id="benchmark-report-container" class="drawer-content-box">
+      <!-- Populated via JS -->
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       MAIN APP CONTAINER (CENTERED & SPACIOUS)
+       ========================================================================= -->
+  <div class="app-layout">
+    
+    <!-- 1. TOP HEADER -->
+    <header class="top-header">
+      <div class="header-left">
+        <button id="btn-toggle-benchmark" class="btn-sidebar-toggle" title="Open Benchmark Drawer">
+          <span class="hamburger-icon">☰</span>
+          <span>Benchmarks</span>
+        </button>
+        <div class="app-icon-badge">
+          <span>📞</span>
+        </div>
+        <div class="header-titles">
+          <h1 class="app-title">Darwix AI Voice Assistant</h1>
+          <p class="app-subtitle">Lead qualification & knowledge retrieval</p>
+        </div>
+      </div>
+      
+      <div class="header-right">
+        <div class="status-indicator">
+          <span class="status-dot-pulse"></span>
+          <span id="header-status-text">Connected & Ready</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. NAVIGATION BAR -->
+    <nav class="nav-bar">
+      <button class="nav-tab active" data-tab="tab-voice">
+        <span class="tab-icon">📞</span> Voice caller
+      </button>
+      <button class="nav-tab" data-tab="tab-kb">
+        <span class="tab-icon">📖</span> Knowledge base
+      </button>
+      <button class="nav-tab" data-tab="tab-multilingual">
+        <span class="tab-icon">🌐</span> Multilingual (Q3)
+      </button>
+      <button class="nav-tab" data-tab="tab-nudges">
+        <span class="tab-icon">🔔</span> Live Nudges (Q4)
+      </button>
+    </nav>
+
+    <!-- =======================================================================
+         TAB 1: VOICE CALLER (BIG & CENTERED)
+         ======================================================================= -->
+    <section id="tab-voice" class="tab-view active">
+      
+      <!-- HERO CALL ACTION CARD -->
+      <div class="hero-call-card">
+        <div class="call-status-group">
+          <span id="call-status-dot" class="status-dot ready"></span>
+          <span id="call-status-label" class="status-label">Ready</span>
+          <div id="waveform-bars" class="waveform-anim hidden">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="call-actions-group">
+          <button id="btn-start-call" class="btn-call-primary">
+            <span class="btn-icon">🎤</span> Start call
+          </button>
+          <button id="btn-mic-toggle" class="btn-call-mic hidden">
+            <span class="btn-icon">🎙️</span> <span id="mic-text">Hold to Speak</span>
+          </button>
+          <button id="btn-end-call" class="btn-call-danger hidden">
+            <span class="btn-icon">❌</span> End call
+          </button>
+          <button id="btn-clear-chat" class="btn-clean-ghost">Clear</button>
+        </div>
+      </div>
+
+      <!-- GENERATED CRM LEAD CARD (COLLAPSIBLE) -->
+      <div id="crm-lead-container" class="crm-lead-card hidden">
+        <div class="crm-header-row">
+          <div class="crm-title-group">
+            <span class="crm-badge">CRM LEAD GENERATED</span>
+            <h4 id="crm-company-name">Apex Logistics LLC</h4>
+          </div>
+          <span id="crm-status-pill" class="crm-pill qualified">Pre-Approved</span>
+        </div>
+
+        <div class="crm-metrics-grid">
+          <div class="crm-metric-box">
+            <span class="crm-lbl">PRELIMINARY APPROVED LIMIT</span>
+            <span class="crm-val" id="crm-approved-amount">₹45,00,000</span>
+          </div>
+          <div class="crm-metric-box">
+            <span class="crm-lbl">RECOMMENDED PROGRAM</span>
+            <span class="crm-val" id="crm-program">Commercial Business Loan</span>
+          </div>
+          <div class="crm-metric-box">
+            <span class="crm-lbl">ANNUAL TURNOVER</span>
+            <span class="crm-val" id="crm-revenue">₹1.80 Cr</span>
+          </div>
+          <div class="crm-metric-box">
+            <span class="crm-lbl">MONTHLY CASH BALANCE</span>
+            <span class="crm-val" id="crm-monthly">₹4,50,000</span>
+          </div>
+        </div>
+
+        <!-- QUALIFICATION FLAGS / OBSERVATIONS -->
+        <div class="crm-flags-section">
+          <span class="crm-flags-title">UNDERWRITING OBSERVATIONS:</span>
+          <div id="crm-flags-box" class="crm-flags-list">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- SUBMIT TO CRM BUTTON -->
+        <div class="crm-actions-footer">
+          <span class="lead-id-label">Lead ID: <strong id="crm-lead-id">LEAD-0000</strong></span>
+          <button id="btn-sync-crm" class="btn-sync-crm" onclick="alert('Lead qualification profile successfully synchronized to CRM database!')">
+            <span>⚡ Sync to Core Banking CRM</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STREAMING CHAT CANVAS -->
+      <div id="chat-stream-canvas" class="chat-canvas">
+        <div class="empty-state-notice">
+          <span>Click "Start call" to initiate lead qualification with Alex</span>
+        </div>
+      </div>
+
+      <!-- COMMON QUESTIONS / FAQ PRESET PILLS -->
+      <div class="faq-pills-container">
+        <span class="faq-tag">💡 COMMON QUESTIONS:</span>
+        <div class="faq-pills-list">
+          <button class="faq-btn" data-q="What is the maximum loan limit and eligibility for Unsecured Business Growth Loans?">Unsecured Loan Limits</button>
+          <button class="faq-btn" data-q="What are the interest rates and repayment tenure for MSME credit?">MSME Interest Rates</button>
+          <button class="faq-btn" data-q="What documents are required to apply for commercial credit?">Required Documents</button>
+          <button class="faq-btn" data-q="Can I get collateral-free loans under CGTMSE guarantee?">CGTMSE Coverage</button>
+        </div>
+      </div>
+
+      <!-- TEXT FALLBACK BAR -->
+      <div class="bottom-input-bar">
+        <div class="input-shell">
+          <input type="text" id="user-text-input" placeholder="Type a message or policy inquiry..." />
+          <button id="btn-send-text" class="btn-icon-send" title="Send message">
+            <span>➤</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         TAB 2: KNOWLEDGE BASE EXPLORER (QUESTION 2)
+         ======================================================================= -->
+    <section id="tab-kb" class="tab-view">
+      
+      <!-- TOP PRESET INGESTION BAR -->
+      <div class="kb-presets-card">
+        <div class="presets-header-line">
+          <span class="presets-label">⚡ SELECT KNOWLEDGE DATASET PRESET:</span>
+          <span class="presets-hint">(Click a preset or upload custom document to index chunks)</span>
+        </div>
+        <div class="preset-buttons-group">
+          <button id="btn-preset-hdfc" class="btn-preset">🏦 Preset 1 (HDFC Dataset)</button>
+          <button id="btn-preset-sbi" class="btn-preset">🏛️ Preset 2 (SBI Dataset)</button>
+          <button id="btn-preset-default" class="btn-preset">📚 Preset 3 (Default Commercial Rules)</button>
+        </div>
+        <div id="ingestion-status-badge" class="ingestion-status-bar hidden">
+          <span id="ingestion-status-text">Processing document...</span>
+        </div>
+      </div>
+
+      <!-- BIG CENTERED HYBRID RAG SEARCH CARD -->
+      <div class="kb-search-card">
+        <div class="kb-panel-header">
+          <h2>Hybrid RAG Search (FAISS Dense + BM25 Sparse)</h2>
+          <p>Search active commercial lending knowledge chunks with confidence scoring & provenance citations</p>
+        </div>
+        
+        <div class="kb-search-bar">
+          <input type="text" id="kb-search-input" placeholder="e.g. What is the maximum loan limit and interest rate?">
+          <button id="btn-kb-search" class="btn-search">Search</button>
+        </div>
+
+        <div id="kb-search-results" class="kb-results-box">
+          <div class="empty-state-notice">
+            <span class="empty-icon">📂</span>
+            <p><strong>Knowledge base is active.</strong></p>
+            <span>Search policies above or upload custom documents below.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPACT BOTTOM UPLOAD BAR -->
+      <div class="compact-upload-bar">
+        <input type="file" id="file-upload-input" class="hidden-file-input" accept=".pdf,.html,.htm,.csv,.tsv,.txt,.md,.json">
+        <label for="file-upload-input" id="btn-compact-upload" class="btn-compact-upload" title="Upload custom document">
+          <span class="upload-ico">📎</span>
+          <span>Upload Document (PDF, CSV, HTML, TXT)</span>
+        </label>
+        <span class="upload-tip">Parses tables, strips boilerplate, scrubs PII, and indexes to FAISS vector DB</span>
+      </div>
+
+    </section>
+
+    <!-- =======================================================================
+         TAB 3: MULTILINGUAL VOICE BOTS (QUESTION 3)
+         ======================================================================= -->
+    <section id="tab-multilingual" class="tab-view">
+      
+      <!-- TOP MARKET SELECTOR & BOT HEADER -->
+      <div class="q3-hero-card">
+        <div class="q3-control-header">
+          <div class="q3-title-group">
+            <span class="q3-badge">QUESTION 3 PROTOTYPE</span>
+            <h2>Native-Language Financial Voice Bots (SE Asia)</h2>
+          </div>
+          <div class="q3-market-toggle-group">
+            <button id="q3-btn-market-ph" class="btn-market active">🇵🇭 Philippines (Taglish)</button>
+            <button id="q3-btn-market-id" class="btn-market">🇮🇩 Indonesia (Bahasa)</button>
+          </div>
+        </div>
+
+        <div class="q3-persona-banner">
+          <div class="persona-info-left">
+            <div class="persona-title-row">
+              <strong id="q3-bot-name" class="persona-name">🇵🇭 Maria Santos</strong>
+              <span id="q3-bot-sector" class="persona-sector">Bancassurance & Life Insurance</span>
+            </div>
+            <p id="q3-bot-desc" class="persona-desc">Natural Taglish (Tagalog-English code-switching) with respectful 'po/opo' particles, bancassurance rider endorsements, and 31-day lapse grace period rules.</p>
+          </div>
+        </div>
+
+        <!-- SCENARIO RUNNER & CALL PLAYER -->
+        <div class="q3-scenario-bar">
+          <div class="q3-scenario-select-box">
+            <label>🎙️ SELECT TEST CALL SCENARIO (4 FULL CALLS RECORDED):</label>
+            <select id="q3-scenario-select" class="q3-dropdown"></select>
+          </div>
+          <div class="q3-btn-group">
+            <button id="q3-btn-play-scenario" class="btn-action-primary">
+              <span>▶ Play Call Audio</span>
+            </button>
+            <button id="q3-btn-stop-scenario" class="btn-action-danger hidden">
+              <span>⏹ Stop</span>
+            </button>
+          </div>
+        </div>
+        <div class="q3-scenario-note">
+          <p id="q3-scenario-desc">Loading scenario details...</p>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE MULTILINGUAL CHAT CANVAS -->
+      <div class="q3-chat-container">
+        <div class="q3-canvas-header">
+          <span class="stream-label">💬 Live Conversational Stream & ASR Transcriber</span>
+          <span class="voice-badge">🔊 Native Neural Speech Enabled</span>
+        </div>
+
+        <div id="q3-chat-canvas" class="chat-canvas q3-canvas">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- QUICK PROMPT PILLS -->
+        <div class="faq-pills-container q3-pills">
+          <span class="faq-tag">💡 QUICK INQUIRIES:</span>
+          <div class="faq-pills-list">
+            <button class="faq-btn q3-pill-btn" data-q="Magkano po ba ang monthly premium para sa ₱1.5M life coverage with Hospital Income rider?">🇵🇭 Premium & Rider</button>
+            <button class="faq-btn q3-pill-btn" data-q="Medyo gipit po kasi ang budget ko ngayon, mag-la-lapse ba agad ang policy ko?">🇵🇭 Lapse & Grace Period</button>
+            <button class="faq-btn q3-pill-btn" data-q="Halo Bu Dewi, saya mau konfirmasi pembayaran angsuran mobil bulan ini via Virtual Account.">🇮🇩 Cek Angsuran</button>
+            <button class="faq-btn q3-pill-btn" data-q="Nuwun sewu Mbak Dewi, panen rada telat niki, napa saged perpanjang tenor mawon ben mboten dipun denda?">🇮🇩 Javanese Accent Hardship</button>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE TEXT INPUT -->
+        <div class="bottom-input-bar">
+          <div class="input-shell">
+            <input type="text" id="q3-text-input" placeholder="Type a message in Taglish or Bahasa Indonesia..." />
+            <button id="q3-btn-send" class="btn-icon-send" title="Send message">
+              <span>➤</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CODE-SWITCHING RECOGNITION GLOSSARY -->
+      <div class="q3-glossary-card">
+        <div class="glossary-header">
+          <span>📚 ACTIVE DOMAIN TERMINOLOGY & CULTURAL MARKERS RECOGNIZED</span>
+        </div>
+        <div id="q3-glossary-tags" class="glossary-tags">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =======================================================================
+         TAB 4: LIVE AGENT ASSIST COCKPIT & REAL-TIME NUDGES (QUESTION 4)
+         ======================================================================= -->
+    <section id="tab-nudges" class="tab-view">
+      
+      <!-- TOP CONTROL & SCENARIO SELECTION BAR -->
+      <div class="q4-control-card">
+        <div class="q4-control-header">
+          <div class="q4-title-group">
+            <span class="q4-badge-pulse">LIVE AGENT ASSIST</span>
+            <h2>Real-Time Streaming Call Intelligence & Nudge Engine</h2>
+          </div>
+          <div class="q4-stream-status">
+            <span id="q4-status-dot" class="status-dot-pulse"></span>
+            <span id="q4-status-label">Ready to Stream</span>
+          </div>
+        </div>
+
+        <div class="q4-controls-row">
+          <div class="q4-select-group">
+            <label for="q4-scenario-select">Select Test Scenario (1x Real-Time Speed):</label>
+            <select id="q4-scenario-select" class="q4-dropdown">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+
+          <div class="q4-btn-group">
+            <button id="q4-btn-start-sim" class="btn-call-primary">
+              <span>▶️ Start Real-Time Call Simulation</span>
+            </button>
+            <button id="q4-btn-stop-sim" class="btn-call-danger hidden">
+              <span>⏹️ Stop Call</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Scenario Description & Expected Signals -->
+        <div class="q4-scenario-info-banner">
+          <p id="q4-scenario-desc">Select a scenario to view real-time compliance and cross-sell nudges.</p>
+          <span id="q4-scenario-expected-priority" class="q4-priority-tag">Expected Signal: ...</span>
+        </div>
+
+        <!-- Audio Player & Timeline Bar -->
+        <div class="q4-audio-progress-bar">
+          <audio id="q4-audio-player" preload="auto" class="hidden"></audio>
+          <div class="q4-progress-track">
+            <div id="q4-progress-fill" class="q4-progress-fill"></div>
+          </div>
+          <span id="q4-time-display" class="q4-time-counter">0.0s / 0.0s</span>
+        </div>
+      </div>
+
+      <!-- MAIN DUAL-COLUMN COCKPIT WORKSPACE -->
+      <div class="q4-cockpit-grid">
+        
+        <!-- LEFT PANEL: LIVE DIARIZED TRANSCRIPT STREAM -->
+        <div class="q4-transcript-panel">
+          <div class="q4-panel-titlebar">
+            <h3>🎙️ Live Diarized Call Transcript (Agent vs Customer)</h3>
+            <span class="q4-chip-mono">Continuous Streaming ASR (Groq Whisper)</span>
+          </div>
+
+          <div id="q4-transcript-stream" class="q4-stream-box">
+            <div class="q4-empty-stream-hint">
+              <span>🎧 Click "Start Real-Time Call Simulation" above to stream live audio and observe chunk-by-chunk intelligence.</span>
+            </div>
+          </div>
+
+          <!-- Customer Sentiment Indicator -->
+          <div class="q4-sentiment-footer">
+            <span class="sentiment-label-text">Customer Sentiment & Tone:</span>
+            <div id="q4-sentiment-meter" class="sentiment-meter-bar neutral"></div>
+            <span id="q4-sentiment-label" class="sentiment-val">🟡 Neutral / Inquiring</span>
+          </div>
+        </div>
+
+        <!-- RIGHT PANEL: ACTIVE NUDGES & LATENCY TELEMETRY PROFILER -->
+        <div class="q4-nudges-panel">
+          
+          <!-- ACTIVE NUDGE CARDS BOX -->
+          <div class="q4-nudges-header">
+            <h3>💡 Active Actionable Nudges (Pre-Call Termination)</h3>
+            <span class="q4-chip-governor">Nudge Governor Active (Anti-Spam)</span>
+          </div>
+
+          <div id="q4-active-nudges-box" class="q4-nudges-container">
+            <div id="q4-empty-nudge-notice" class="q4-empty-nudges-hint">
+              <span>🛡️ No active alerts. The Nudge Governor is monitoring for statutory compliance gaps, missed cross-sells, or rising customer frustration.</span>
+            </div>
+          </div>
+
+          <!-- REAL-TIME LATENCY & TELEMETRY DASHBOARD -->
+          <div class="q4-telemetry-card">
+            <h4>⚡ Real-Time Latency & Compliance Profiler</h4>
+            
+            <div class="q4-metrics-grid">
+              <div class="metric-mini-box">
+                <span class="metric-val" id="q4-p50-total">0 ms</span>
+                <span class="metric-lbl">Total Latency (P50)</span>
+              </div>
+              <div class="metric-mini-box">
+                <span class="metric-val" id="q4-p95-total">0 ms</span>
+                <span class="metric-lbl">Total Latency (P95)</span>
+              </div>
+              <div class="metric-mini-box">
+                <span class="metric-val" id="q4-p50-asr">0 ms</span>
+                <span class="metric-lbl">ASR Chunk Latency (P50)</span>
+              </div>
+              <div class="metric-mini-box">
+                <span class="metric-val" id="q4-p50-signal">0 ms</span>
+                <span class="metric-lbl">Signal Reasoner (P50)</span>
+              </div>
+            </div>
+
+            <div class="q4-governor-stats-row">
+              <div class="gov-stat-item">
+                <span class="gov-stat-label">Compliance Violations Prevented:</span>
+                <span class="gov-stat-num" id="q4-compliance-violations">0</span>
+              </div>
+              <div class="gov-stat-item">
+                <span class="gov-stat-label">Cross-Sell Opportunities Detected:</span>
+                <span class="gov-stat-num" id="q4-cross-sell-detected">0</span>
+              </div>
+              <div class="gov-stat-item">
+                <span class="gov-stat-label">False Alerts / Noise Suppressed:</span>
+                <span class="gov-stat-num" id="q4-noise-suppressed">0</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <script src="js/q1_voice_caller.js?v=60"></script>
+  <script src="js/q2_kb_inspector.js?v=60"></script>
+  <script src="js/q3_multilingual.js?v=60"></script>
+  <script src="js/q4_agent_cockpit.js?v=60"></script>
+</body>
+</html>

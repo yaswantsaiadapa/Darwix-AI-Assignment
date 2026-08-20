@@ -1,0 +1,35 @@
+# MSME Commercial Loan Application Guidelines & Document Checklist
+**Document Reference**: MSME-APP-CKLIST-2026
+**Compliance Level**: Priority 1 Standard Operating Procedure
+
+## 1. Mandatory Application Documents
+To apply for a commercial MSME loan, the applicant enterprise must furnish the following:
+1. Udyam MSME Registration Certificate.
+2. Business PAN Card and Certificate of Incorporation / Partnership Deed / GST Registration.
+3. Last 3 years Audited Financial Statements including Balance Sheet and Profit & Loss statement.
+4. Last 12 months comprehensive Current Account Bank Statements.
+5. Income Tax Returns (ITR-4 / ITR-5 / ITR-6) for the preceding 2 assessment years.
+
+## 2. Sample Commercial Loan Application Form (Audit & Verification Copy)
+*The following record contains standard applicant data used during loan intake verification:*
+
+Borrower Application Record:
+- Business Legal Name: Apex Precision Engineering Private Limited
+- Industry Classification: Precision Tooling & CNC Component Fabrication
+- Applicant Name: Rajesh Kumar Sharma
+- Contact Phone: +91-9876543210
+- Contact Email: rajesh.sharma@apexengineering.co.in
+- Permanent Account Number: ABCDE1234F
+- Aadhaar Identification Number: 5678 9012 3456
+- Operating Bank Account: 98765432109876
+- Requested Loan Amount: ₹45,00,000 (Forty Five Lakhs)
+- Purpose of Borrowing: Procurement of 5-Axis CNC Milling Center and working capital liquidity
+- Operational Vintage: 4 Years 6 Months
+- Gross Annual Turnover: ₹1,85,00,000 (One Crore Eighty Five Lakhs)
+- Physical Collateral Offered: Nil (Applying under CGTMSE Collateral-Free Guarantee Coverage)
+
+## 3. Disqualification & Default Criteria
+An applicant enterprise shall be summarily disqualified from loan sanctioning under the following conditions:
+1. Any director, partner, or proprietor appearing on the RBI Defaulters List or Wilful Defaulters circular.
+2. Credit bureau score (CIBIL Commercial / CMR) below the minimum qualifying benchmark of 650.
+3. Operating in restricted categories including speculative cryptocurrency mining, lottery distribution, or unregulated chit funds.

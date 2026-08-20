@@ -1,0 +1,7 @@
+Product_Code,Product_Name,Min_Amount_INR,Max_Amount_INR,Benchmark_Rate,Spread_Over_EBLR,Final_RoI_Range,Processing_Fee
+SBI-SME-001,SME Smart Score Term Loan,1000000,50000000,EBLR (8.65%),0.50% - 2.85%,9.15% - 11.50% p.a.,0.50% of loan amount
+SBI-SME-002,Simplified Small Business Loan,1000000,25000000,EBLR (8.65%),1.25% - 3.50%,9.90% - 12.15% p.a.,0.75% of loan amount
+SBI-MUDRA-S,MUDRA Shishu Facility,10000,50000,EBLR (8.65%),0.00% - 1.10%,8.65% - 9.75% p.a.,Nil (Waived)
+SBI-MUDRA-K,MUDRA Kishore Facility,50001,500000,EBLR (8.65%),0.50% - 2.60%,9.15% - 11.25% p.a.,0.50% of loan amount
+SBI-MUDRA-T,MUDRA Tarun Facility,500001,1000000,EBLR (8.65%),1.00% - 3.35%,9.65% - 12.00% p.a.,0.50% of loan amount
+SBI-SME-LAP,SME Loan Against Commercial Property,2500000,200000000,EBLR (8.65%),0.35% - 2.20%,9.00% - 10.85% p.a.,0.35% (Max ₹1 Lakh)

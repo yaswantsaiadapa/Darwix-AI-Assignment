@@ -1,0 +1,534 @@
+[
+  {
+    "call_id": "CALL-Q1-001",
+    "scenario_name": "Cooperative Customer (Happy Path)",
+    "crm_lead": {
+      "lead_id": "LEAD-SBA-0EE5505C",
+      "created_at": "2026-08-19 07:27:38Z",
+      "status": "QUALIFIED",
+      "business_profile": {
+        "business_name": "Apex Logistics LLC",
+        "applicant_name": "Phone Applicant",
+        "phone": "Voice Channel",
+        "years_in_business": 4.0,
+        "annual_revenue": 600000.0,
+        "requested_loan_amount": 150000.0,
+        "stated_loan_purpose": "For working capital and inventory."
+      },
+      "underwriting_assessment": {
+        "eligibility_tier": "Tier 2 (Standard MSME)",
+        "recommended_program": "HDFC Bank Unsecured Business Growth Loan (Up to \u20b950 Lakhs)",
+        "preliminary_max_approved": 150000.0,
+        "monthly_payment_estimate": 3150.28,
+        "underwriting_flags": [],
+        "escalation_required": false
+      },
+      "call_metadata": {
+        "total_turns": 12,
+        "call_summary": "Customer completed voice qualification. Lead generated in CRM.",
+        "citations_consulted": []
+      },
+      "full_transcript": [
+        {
+          "role": "assistant",
+          "content": "Hello! Thank you for calling HDFC Bank commercial lending. My name is Alex. I can help check your eligibility for HDFC Business Growth Loans, CGTMSE collateral-free credit, and working capital lines. May I know the legal name of your business?"
+        },
+        {
+          "role": "user",
+          "content": "Apex Logistics LLC."
+        },
+        {
+          "role": "assistant",
+          "content": "Thank you. How many continuous years has Apex Logistics LLC been in active operation?"
+        },
+        {
+          "role": "user",
+          "content": "We have been operating for 4 years."
+        },
+        {
+          "role": "assistant",
+          "content": "Got it. Approximately what was your gross annual revenue over the past 12 months?"
+        },
+        {
+          "role": "user",
+          "content": "Gross revenue was 600,000 dollars."
+        },
+        {
+          "role": "assistant",
+          "content": "Understood. How much commercial funding are you looking to borrow?"
+        },
+        {
+          "role": "user",
+          "content": "We are seeking 150,000 dollars."
+        },
+        {
+          "role": "assistant",
+          "content": "And what is the primary purpose for these funds (for example, working capital, inventory, or equipment)?"
+        },
+        {
+          "role": "user",
+          "content": "For working capital and inventory."
+        },
+        {
+          "role": "assistant",
+          "content": "Great news! Based on your 4.0 years in operation and Rs. 600,000 annual turnover, your business qualifies under our HDFC Bank Unsecured Business Growth Loan (Up to \u20b950 Lakhs) for up to Rs. 150,000. Estimated monthly EMI starts around Rs. 3,150/month. Shall I submit your preliminary pre-approval application to underwriting?"
+        },
+        {
+          "role": "user",
+          "content": "Yes, please proceed."
+        },
+        {
+          "role": "assistant",
+          "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-0EE5505C. Our lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix Capital!"
+        }
+      ]
+    },
+    "transcript": [
+      {
+        "role": "assistant",
+        "content": "Hello! Thank you for calling HDFC Bank commercial lending. My name is Alex. I can help check your eligibility for HDFC Business Growth Loans, CGTMSE collateral-free credit, and working capital lines. May I know the legal name of your business?"
+      },
+      {
+        "role": "user",
+        "content": "Apex Logistics LLC."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you. How many continuous years has Apex Logistics LLC been in active operation?"
+      },
+      {
+        "role": "user",
+        "content": "We have been operating for 4 years."
+      },
+      {
+        "role": "assistant",
+        "content": "Got it. Approximately what was your gross annual revenue over the past 12 months?"
+      },
+      {
+        "role": "user",
+        "content": "Gross revenue was 600,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "Understood. How much commercial funding are you looking to borrow?"
+      },
+      {
+        "role": "user",
+        "content": "We are seeking 150,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "And what is the primary purpose for these funds (for example, working capital, inventory, or equipment)?"
+      },
+      {
+        "role": "user",
+        "content": "For working capital and inventory."
+      },
+      {
+        "role": "assistant",
+        "content": "Great news! Based on your 4.0 years in operation and Rs. 600,000 annual turnover, your business qualifies under our HDFC Bank Unsecured Business Growth Loan (Up to \u20b950 Lakhs) for up to Rs. 150,000. Estimated monthly EMI starts around Rs. 3,150/month. Shall I submit your preliminary pre-approval application to underwriting?"
+      },
+      {
+        "role": "user",
+        "content": "Yes, please proceed."
+      },
+      {
+        "role": "assistant",
+        "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-0EE5505C. Our lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix Capital!"
+      }
+    ],
+    "citations_used": []
+  },
+  {
+    "call_id": "CALL-Q1-002",
+    "scenario_name": "Grounded Objection & Rate Inquiry",
+    "crm_lead": {
+      "lead_id": "LEAD-SBA-AC5E4E4C",
+      "created_at": "2026-08-19 07:27:53Z",
+      "status": "QUALIFIED",
+      "business_profile": {
+        "business_name": "Beacon Tech Services",
+        "applicant_name": "Phone Applicant",
+        "phone": "Voice Channel",
+        "years_in_business": 3.0,
+        "annual_revenue": 400000.0,
+        "requested_loan_amount": 80000.0,
+        "stated_loan_purpose": "Equipment and software licenses."
+      },
+      "underwriting_assessment": {
+        "eligibility_tier": "Tier 2 (Standard MSME)",
+        "recommended_program": "HDFC Bank Unsecured Business Growth Loan (Up to \u20b950 Lakhs)",
+        "preliminary_max_approved": 80000.0,
+        "monthly_payment_estimate": 1680.15,
+        "underwriting_flags": [],
+        "escalation_required": false
+      },
+      "call_metadata": {
+        "total_turns": 14,
+        "call_summary": "Customer completed voice qualification. Lead generated in CRM.",
+        "citations_consulted": []
+      },
+      "full_transcript": [
+        {
+          "role": "assistant",
+          "content": "Hello! Thank you for calling HDFC Bank commercial lending. My name is Alex. I can help check your eligibility for HDFC Business Growth Loans, CGTMSE collateral-free credit, and working capital lines. May I know the legal name of your business?"
+        },
+        {
+          "role": "user",
+          "content": "Beacon Tech Services"
+        },
+        {
+          "role": "assistant",
+          "content": "Thank you. How many continuous years has Beacon Tech Services been in active operation?"
+        },
+        {
+          "role": "user",
+          "content": "What is the maximum loan amount and interest rate for a 7(a) loan?"
+        },
+        {
+          "role": "assistant",
+          "content": "I do not have verified policy guidelines regarding that in our official HDFC Bank underwriting manual. We specialize in commercial HDFC business loans, CGTMSE facilities, and working capital lines for registered enterprises. Would you like to proceed with checking your business loan eligibility?"
+        },
+        {
+          "role": "user",
+          "content": "We have been in business 3 years."
+        },
+        {
+          "role": "assistant",
+          "content": "Got it. Approximately what was your gross annual revenue over the past 12 months?"
+        },
+        {
+          "role": "user",
+          "content": "Annual revenue is 400,000 dollars."
+        },
+        {
+          "role": "assistant",
+          "content": "Understood. How much commercial funding are you looking to borrow?"
+        },
+        {
+          "role": "user",
+          "content": "Looking for 80,000 dollars."
+        },
+        {
+          "role": "assistant",
+          "content": "And what is the primary purpose for these funds (for example, working capital, inventory, or equipment)?"
+        },
+        {
+          "role": "user",
+          "content": "Equipment and software licenses."
+        },
+        {
+          "role": "assistant",
+          "content": "Great news! Based on your 3.0 years in operation and Rs. 400,000 annual turnover, your business qualifies under our HDFC Bank Unsecured Business Growth Loan (Up to \u20b950 Lakhs) for up to Rs. 80,000. Estimated monthly EMI starts around Rs. 1,680/month. Shall I submit your preliminary pre-approval application to underwriting?"
+        },
+        {
+          "role": "user",
+          "content": "Yes, submit it."
+        },
+        {
+          "role": "assistant",
+          "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-AC5E4E4C. Our lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix Capital!"
+        }
+      ]
+    },
+    "transcript": [
+      {
+        "role": "assistant",
+        "content": "Hello! Thank you for calling HDFC Bank commercial lending. My name is Alex. I can help check your eligibility for HDFC Business Growth Loans, CGTMSE collateral-free credit, and working capital lines. May I know the legal name of your business?"
+      },
+      {
+        "role": "user",
+        "content": "Beacon Tech Services"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you. How many continuous years has Beacon Tech Services been in active operation?"
+      },
+      {
+        "role": "user",
+        "content": "What is the maximum loan amount and interest rate for a 7(a) loan?"
+      },
+      {
+        "role": "assistant",
+        "content": "I do not have verified policy guidelines regarding that in our official HDFC Bank underwriting manual. We specialize in commercial HDFC business loans, CGTMSE facilities, and working capital lines for registered enterprises. Would you like to proceed with checking your business loan eligibility?"
+      },
+      {
+        "role": "user",
+        "content": "We have been in business 3 years."
+      },
+      {
+        "role": "assistant",
+        "content": "Got it. Approximately what was your gross annual revenue over the past 12 months?"
+      },
+      {
+        "role": "user",
+        "content": "Annual revenue is 400,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "Understood. How much commercial funding are you looking to borrow?"
+      },
+      {
+        "role": "user",
+        "content": "Looking for 80,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "And what is the primary purpose for these funds (for example, working capital, inventory, or equipment)?"
+      },
+      {
+        "role": "user",
+        "content": "Equipment and software licenses."
+      },
+      {
+        "role": "assistant",
+        "content": "Great news! Based on your 3.0 years in operation and Rs. 400,000 annual turnover, your business qualifies under our HDFC Bank Unsecured Business Growth Loan (Up to \u20b950 Lakhs) for up to Rs. 80,000. Estimated monthly EMI starts around Rs. 1,680/month. Shall I submit your preliminary pre-approval application to underwriting?"
+      },
+      {
+        "role": "user",
+        "content": "Yes, submit it."
+      },
+      {
+        "role": "assistant",
+        "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-AC5E4E4C. Our lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix Capital!"
+      }
+    ],
+    "citations_used": []
+  },
+  {
+    "call_id": "CALL-Q1-003",
+    "scenario_name": "Out-of-Scope Crypto Query (Safe Fallback)",
+    "crm_lead": {
+      "lead_id": "LEAD-SBA-3CC8E191",
+      "created_at": "2026-08-19 07:28:12Z",
+      "status": "QUALIFIED",
+      "business_profile": {
+        "business_name": "Apex Holdings",
+        "applicant_name": "Phone Applicant",
+        "phone": "Voice Channel",
+        "years_in_business": 2.0,
+        "annual_revenue": 300000.0,
+        "requested_loan_amount": 50000.0,
+        "stated_loan_purpose": "Working capital."
+      },
+      "underwriting_assessment": {
+        "eligibility_tier": "Tier 2 (Standard MSME)",
+        "recommended_program": "HDFC Bank Unsecured Business Growth Loan (Up to \u20b950 Lakhs)",
+        "preliminary_max_approved": 50000.0,
+        "monthly_payment_estimate": 1050.09,
+        "underwriting_flags": [
+          "Eligible under HDFC CGTMSE government guarantee scheme (1-3 years operating vintage)."
+        ],
+        "escalation_required": false
+      },
+      "call_metadata": {
+        "total_turns": 14,
+        "call_summary": "Customer completed voice qualification. Lead generated in CRM.",
+        "citations_consulted": []
+      },
+      "full_transcript": [
+        {
+          "role": "assistant",
+          "content": "Hello! Thank you for calling HDFC Bank commercial lending. My name is Alex. I can help check your eligibility for HDFC Business Growth Loans, CGTMSE collateral-free credit, and working capital lines. May I know the legal name of your business?"
+        },
+        {
+          "role": "user",
+          "content": "Apex Holdings"
+        },
+        {
+          "role": "assistant",
+          "content": "Thank you. How many continuous years has Apex Holdings been in active operation?"
+        },
+        {
+          "role": "user",
+          "content": "Can you finance my personal residential mortgage or crypto mining rig?"
+        },
+        {
+          "role": "assistant",
+          "content": "I do not have verified policy guidelines regarding that in our official HDFC Bank underwriting manual. We specialize in commercial HDFC business loans, CGTMSE facilities, and working capital lines for registered enterprises. Would you like to proceed with checking your business loan eligibility?"
+        },
+        {
+          "role": "user",
+          "content": "We have been active for 2 years."
+        },
+        {
+          "role": "assistant",
+          "content": "Got it. Approximately what was your gross annual revenue over the past 12 months?"
+        },
+        {
+          "role": "user",
+          "content": "300,000 revenue."
+        },
+        {
+          "role": "assistant",
+          "content": "Understood. How much commercial funding are you looking to borrow?"
+        },
+        {
+          "role": "user",
+          "content": "50,000 dollars."
+        },
+        {
+          "role": "assistant",
+          "content": "And what is the primary purpose for these funds (for example, working capital, inventory, or equipment)?"
+        },
+        {
+          "role": "user",
+          "content": "Working capital."
+        },
+        {
+          "role": "assistant",
+          "content": "Great news! Based on your 2.0 years in operation and Rs. 300,000 annual turnover, your business qualifies under our HDFC Bank Unsecured Business Growth Loan (Up to \u20b950 Lakhs) for up to Rs. 50,000. Estimated monthly EMI starts around Rs. 1,050/month. Shall I submit your preliminary pre-approval application to underwriting?"
+        },
+        {
+          "role": "user",
+          "content": "Yes please."
+        },
+        {
+          "role": "assistant",
+          "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-3CC8E191. Our lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix Capital!"
+        }
+      ]
+    },
+    "transcript": [
+      {
+        "role": "assistant",
+        "content": "Hello! Thank you for calling HDFC Bank commercial lending. My name is Alex. I can help check your eligibility for HDFC Business Growth Loans, CGTMSE collateral-free credit, and working capital lines. May I know the legal name of your business?"
+      },
+      {
+        "role": "user",
+        "content": "Apex Holdings"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you. How many continuous years has Apex Holdings been in active operation?"
+      },
+      {
+        "role": "user",
+        "content": "Can you finance my personal residential mortgage or crypto mining rig?"
+      },
+      {
+        "role": "assistant",
+        "content": "I do not have verified policy guidelines regarding that in our official HDFC Bank underwriting manual. We specialize in commercial HDFC business loans, CGTMSE facilities, and working capital lines for registered enterprises. Would you like to proceed with checking your business loan eligibility?"
+      },
+      {
+        "role": "user",
+        "content": "We have been active for 2 years."
+      },
+      {
+        "role": "assistant",
+        "content": "Got it. Approximately what was your gross annual revenue over the past 12 months?"
+      },
+      {
+        "role": "user",
+        "content": "300,000 revenue."
+      },
+      {
+        "role": "assistant",
+        "content": "Understood. How much commercial funding are you looking to borrow?"
+      },
+      {
+        "role": "user",
+        "content": "50,000 dollars."
+      },
+      {
+        "role": "assistant",
+        "content": "And what is the primary purpose for these funds (for example, working capital, inventory, or equipment)?"
+      },
+      {
+        "role": "user",
+        "content": "Working capital."
+      },
+      {
+        "role": "assistant",
+        "content": "Great news! Based on your 2.0 years in operation and Rs. 300,000 annual turnover, your business qualifies under our HDFC Bank Unsecured Business Growth Loan (Up to \u20b950 Lakhs) for up to Rs. 50,000. Estimated monthly EMI starts around Rs. 1,050/month. Shall I submit your preliminary pre-approval application to underwriting?"
+      },
+      {
+        "role": "user",
+        "content": "Yes please."
+      },
+      {
+        "role": "assistant",
+        "content": "Wonderful! I have generated your pre-approval file LEAD-SBA-3CC8E191. Our lending team will contact you within 24 hours to finalize documents. Thank you for choosing Darwix Capital!"
+      }
+    ],
+    "citations_used": []
+  },
+  {
+    "call_id": "CALL-Q1-004",
+    "scenario_name": "Human Escalation Request",
+    "crm_lead": {
+      "lead_id": "LEAD-SBA-6E8B6920",
+      "created_at": "2026-08-19 07:28:20Z",
+      "status": "QUALIFIED",
+      "business_profile": {
+        "business_name": "Pinnacle Construction",
+        "applicant_name": "Phone Applicant",
+        "phone": "Voice Channel",
+        "years_in_business": 2.0,
+        "annual_revenue": 200000.0,
+        "requested_loan_amount": 100000.0,
+        "stated_loan_purpose": "General Inquiry"
+      },
+      "underwriting_assessment": {
+        "eligibility_tier": "Tier 2 (Standard MSME)",
+        "recommended_program": "HDFC Bank Unsecured Business Growth Loan (Up to \u20b950 Lakhs)",
+        "preliminary_max_approved": 100000.0,
+        "monthly_payment_estimate": 2100.19,
+        "underwriting_flags": [
+          "Eligible under HDFC CGTMSE government guarantee scheme (1-3 years operating vintage)."
+        ],
+        "escalation_required": true
+      },
+      "call_metadata": {
+        "total_turns": 4,
+        "call_summary": "Customer requested direct transfer to a human specialist.",
+        "citations_consulted": []
+      },
+      "full_transcript": [
+        {
+          "role": "assistant",
+          "content": "Hello! Thank you for calling HDFC Bank commercial lending. My name is Alex. I can help check your eligibility for HDFC Business Growth Loans, CGTMSE collateral-free credit, and working capital lines. May I know the legal name of your business?"
+        },
+        {
+          "role": "user",
+          "content": "Pinnacle Construction"
+        },
+        {
+          "role": "assistant",
+          "content": "Thank you. How many continuous years has Pinnacle Construction been in active operation?"
+        },
+        {
+          "role": "user",
+          "content": "I would like to speak to a human loan officer please."
+        },
+        {
+          "role": "assistant",
+          "content": "I completely understand. I am transferring your file directly to a senior commercial lending officer right now. They will review your details immediately."
+        }
+      ]
+    },
+    "transcript": [
+      {
+        "role": "assistant",
+        "content": "Hello! Thank you for calling HDFC Bank commercial lending. My name is Alex. I can help check your eligibility for HDFC Business Growth Loans, CGTMSE collateral-free credit, and working capital lines. May I know the legal name of your business?"
+      },
+      {
+        "role": "user",
+        "content": "Pinnacle Construction"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you. How many continuous years has Pinnacle Construction been in active operation?"
+      },
+      {
+        "role": "user",
+        "content": "I would like to speak to a human loan officer please."
+      },
+      {
+        "role": "assistant",
+        "content": "I completely understand. I am transferring your file directly to a senior commercial lending officer right now. They will review your details immediately."
+      }
+    ],
+    "citations_used": []
+  }
+]

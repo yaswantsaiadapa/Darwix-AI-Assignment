@@ -1,0 +1,9 @@
+Loan_Product_Name,Min_Amount_INR,Max_Amount_INR,Interest_Rate_Range,Max_Tenure_Months,Collateral_Requirement,Min_CIBIL_Score
+Unsecured MSME Growth Loan,50000,5000000,11.90% - 21.35% p.a.,48,Nil (Collateral-Free),700
+CGTMSE Guaranteed Term Loan,100000,50000000,9.50% - 13.50% p.a.,84,CGTMSE Guarantee (No Physical Collateral),675
+Commercial Loan Against Property (LAP),1000000,500000000,9.00% - 12.75% p.a.,180,Commercial or Industrial Real Estate (LTV <= 65%),680
+Working Capital Cash Credit / Overdraft,500000,250000000,EBLR + 1.75% to 3.50%,12 (Annual Renewal),Hypothecation of Stock and Book Debts,700
+Equipment & Machinery Term Loan,500000,100000000,9.75% - 14.00% p.a.,84,Hypothecation of Financed Plant & Machinery,680
+MUDRA Shishu Loan,10000,50000,8.50% - 10.00% p.a.,36,Nil,650
+MUDRA Kishore Loan,50001,500000,9.00% - 11.50% p.a.,60,Nil,650
+MUDRA Tarun Loan,500001,1000000,9.50% - 12.00% p.a.,60,Nil,675

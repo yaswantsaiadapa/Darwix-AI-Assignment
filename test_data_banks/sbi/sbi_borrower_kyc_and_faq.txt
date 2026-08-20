@@ -1,0 +1,25 @@
+# State Bank of India MSME Underwriting FAQ & Borrower KYC Checklist
+**Document ID**: SBI-SME-CHECKLIST-2026
+
+## 1. Frequently Answered Questions (SBI SME Desk)
+Q: What is the maximum loan under SBI SME Smart Score?
+A: Up to ₹500 Lakhs (₹5 Crore) for eligible MSMEs.
+
+Q: What is the collateral security norm for loans up to ₹5 Crore?
+A: Loans up to ₹5 Crore can be sanctioned without physical collateral under the CGTMSE Credit Guarantee Scheme.
+
+Q: What are the minimum requirements for an SBI Business Loan?
+A: Minimum 2 years in business, minimum ₹25 Lakhs turnover, and promoter CIBIL score of 675+.
+
+## 2. Sample SBI Loan Applicant Intake Record (KYC Audit Copy)
+Borrower Information:
+- Enterprise Name: Swastik Metal Fabrication Works
+- Proprietor / Borrower: Suresh Chandra Aggarwal
+- Proprietor Aadhaar No: 9876 5432 1098
+- Enterprise PAN: SWAST1234F
+- Contact Mobile: +91-9811223344
+- Business Email: suresh@swastikmetals.in
+- SBI Current Account: 30123456789
+- Requested Loan Quantum: ₹20,00,000 (Twenty Lakhs under SBI SME Smart Score)
+- Annual Turnover: ₹95,00,000 (Ninety Five Lakhs)
+- Operational Vintage: 3 Years 8 Months

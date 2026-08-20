@@ -1,0 +1,6 @@
+Product_Code,Property_Type,Min_Loan_INR,Max_Loan_INR,Interest_Rate_Range,Max_LTV_Percent,Max_Tenure_Years,Eligible_Borrowers
+HDFC-LAP-COM,Commercial Office / Retail Complex,1000000,500000000,9.00% - 11.75% p.a.,65%,15,MSME / Corporates / LLPs
+HDFC-LAP-IND,Industrial Shed / Factory Land,2500000,350000000,9.50% - 12.50% p.a.,60%,12,Manufacturing Enterprises
+HDFC-LAP-RES,Residential Property (Self-Occupied),1000000,250000000,8.75% - 11.25% p.a.,75%,15,Proprietors & Directors
+HDFC-WC-CC,Hypothecation of Stock & Receivables,500000,250000000,Repo + 2.25% to 3.75%,75%,1 (Annual Renewal),Wholesale & Retail Traders
+HDFC-CGTMSE-TL,Term Loan (Government Guarantee),100000,50000000,9.25% - 12.50% p.a.,Nil (Collateral-Free),7,Udyam Registered MSMEs

@@ -1,0 +1,30 @@
+[project]
+name = "darwixai"
+version = "0.1.0"
+description = "Darwix AI Assessment - Production Voice Agent & Knowledge Base"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "edge-tts>=7.2.8",
+    "faiss-cpu>=1.15.0",
+    "fastapi>=0.141.1",
+    "groq>=1.6.0",
+    "httpx>=0.28.1",
+    "jinja2>=3.1.6",
+    "lxml>=6.1.1",
+    "numpy>=2.5.2",
+    "pydantic>=2.13.4",
+    "pypdf>=6.16.1",
+    "pytest>=9.1.1",
+    "python-dotenv>=1.2.3",
+    "python-multipart>=0.0.32",
+    "rank-bm25>=0.2.2",
+    "reportlab>=5.0.0",
+    "sentence-transformers>=6.0.0",
+    "uvicorn[standard]>=0.52.3",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["backend/tests"]

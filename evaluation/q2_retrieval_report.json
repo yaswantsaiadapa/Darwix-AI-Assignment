@@ -1,0 +1,57 @@
+[
+  {
+    "query_id": "eval_q2_001",
+    "question": "What is the maximum loan quantum and repayment tenure for HDFC Unsecured Business Growth Loans?",
+    "query_type": "product",
+    "retrieved_chunk": "1. HDFC Unsecured Business Growth Loan\nHDFC Bank provides collateral-free Business Growth Loans designed for Micro, Small and Medium Enterprises (MSMEs),\nsole proprietors, partnerships, LLPs, and priv...",
+    "source_reference": "hdfc_business_growth_loans.pdf",
+    "record_id": "kb_hdfc_business_growth_loans_002",
+    "similarity_score": 0.7799,
+    "relevance_explanation": "Supported by kb_hdfc_business_growth_loans_002 with confidence 0.780.",
+    "verdict": "correct"
+  },
+  {
+    "query_id": "eval_q2_002",
+    "question": "What is the maximum sanction limit and guarantee coverage under HDFC CGTMSE collateral-free loan scheme?",
+    "query_type": "policy",
+    "retrieved_chunk": "## 1. Frequently Answered Questions (Commercial Lending Desk)\nQ: What is the maximum loan amount under HDFC Unsecured Business Growth Loan?\nA: HDFC Bank sanctions up to \u20b950 Lakhs under the unsecured b...",
+    "source_reference": "hdfc_eligibility_and_faq.txt",
+    "record_id": "kb_hdfc_eligibility_and_faq_002",
+    "similarity_score": 0.7419,
+    "relevance_explanation": "Supported by kb_hdfc_eligibility_and_faq_002 with confidence 0.742.",
+    "verdict": "correct"
+  },
+  {
+    "query_id": "eval_q2_003",
+    "question": "What are the eligibility criteria, minimum annual turnover, and business vintage required for HDFC business loans?",
+    "query_type": "qualification",
+    "retrieved_chunk": "## 1. Frequently Answered Questions (Commercial Lending Desk)\nQ: What is the maximum loan amount under HDFC Unsecured Business Growth Loan?\nA: HDFC Bank sanctions up to \u20b950 Lakhs under the unsecured b...",
+    "source_reference": "hdfc_eligibility_and_faq.txt",
+    "record_id": "kb_hdfc_eligibility_and_faq_002",
+    "similarity_score": 0.7843,
+    "relevance_explanation": "Supported by kb_hdfc_eligibility_and_faq_002 with confidence 0.784.",
+    "verdict": "correct"
+  },
+  {
+    "query_id": "eval_q2_004",
+    "question": "Can HDFC Cash Credit and Loan Against Property be used for purchasing raw materials and long-term commercial factory construction?",
+    "query_type": "faq_and_objection",
+    "retrieved_chunk": "# HDFC Bank Working Capital & Cash Credit Solutions\n\nHDFC Bank offers comprehensive working capital financing facilities to help growing enterprises manage cash flows, purchase raw materials, and fina...",
+    "source_reference": "hdfc_msme_portal_export.html",
+    "record_id": "kb_hdfc_msme_portal_export_002",
+    "similarity_score": 0.6577,
+    "relevance_explanation": "Supported by kb_hdfc_msme_portal_export_002 with confidence 0.658.",
+    "verdict": "correct"
+  },
+  {
+    "query_id": "eval_q2_005",
+    "question": "Can I get a loan for personal online gaming tournament bets and lottery jackpots?",
+    "query_type": "unsupported_out_of_scope",
+    "retrieved_chunk": "## 1. Frequently Answered Questions (Commercial Lending Desk)\nQ: What is the maximum loan amount under HDFC Unsecured Business Growth Loan?\nA: HDFC Bank sanctions up to \u20b950 Lakhs under the unsecured b...",
+    "source_reference": "hdfc_eligibility_and_faq.txt",
+    "record_id": "kb_hdfc_eligibility_and_faq_002",
+    "similarity_score": 0.5346,
+    "relevance_explanation": "Top similarity score (0.535) is below threshold (0.55). Query is out-of-scope or unverified.",
+    "verdict": "safely_rejected"
+  }
+]
