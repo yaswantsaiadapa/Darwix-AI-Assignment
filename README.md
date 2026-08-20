@@ -1,6 +1,6 @@
-# Darwix AI - Enterprise Voice Intelligence & Real-Time Call Assistance Platform
+# Darwix AI Voice Bot - AI Engineer Assessment
 
-Darwix AI is a full-stack, enterprise-grade conversational intelligence platform designed for banking, commercial lending, and financial contact centers. The system combines sub-second streaming speech recognition, a hybrid dense-sparse knowledge retrieval engine (FAISS + BM25) with zero-hallucination grounding, culturally localized multilingual voice bots for Southeast Asia, and a real-time supervisor cockpit that delivers live compliance and cross-sell nudges while a call is in progress.
+Darwix AI Voice Bot is a full-stack, enterprise-grade conversational intelligence platform designed for banking, commercial lending, and financial contact centers. The system combines sub-second streaming speech recognition, a hybrid dense-sparse knowledge retrieval engine (FAISS + BM25) with zero-hallucination grounding, culturally localized multilingual voice bots for Southeast Asia, and a real-time supervisor cockpit that delivers live compliance and cross-sell nudges while a call is in progress.
 
 ---
 
