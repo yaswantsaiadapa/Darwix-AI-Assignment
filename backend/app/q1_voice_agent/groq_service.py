@@ -95,8 +95,8 @@ class GroqService:
         system_prompt = (
             "You are an intelligent intent router and entity extractor for a commercial lending voice agent.\n"
             "Analyze the user message in context of the conversation and output a JSON object with:\n"
-            "- 'action': 'SEARCH_KB' (if user asks about policies, customer service, terms, timelines, fees, objections, rates, eligibility rules, or general questions), "
-            "'UPDATE_SLOTS' (if user is answering qualification questions with business name, years in business, annual turnover, loan amount, or loan purpose), "
+            "- 'action': 'SEARCH_KB' (if user asks any question about policies, customer service, terms, timelines, fees, objections, rates, eligibility rules, permitted/prohibited loan purposes like crypto/trading, or general inquiries starting with 'can I', 'do you', 'what is', 'how much', etc.), "
+            "'UPDATE_SLOTS' (if user is directly providing their own qualification information like business name, years in business, annual turnover, requested amount, or purpose), "
             "'ESCALATE' (if requesting a human specialist/manager/agent), or 'CONVERSE' (greetings, pleasantries, small talk).\n"
             "- 'search_query': string or null (clean semantic search query preserving all key inquiry topics if action is SEARCH_KB)\n"
             "- 'slots': object with extracted keys: business_name (string|null), years_in_business (float|null), annual_revenue (float|null), requested_amount (float|null), purpose (string|null)\n"
@@ -126,6 +126,52 @@ class GroqService:
 
         return {"action": "CONVERSE", "search_query": None, "slots": {}, "is_human_escalation": False}
 
+    def generate_conversational_response(
+        self,
+        user_message: str,
+        dialogue_state: str,
+        prompt_instruction: str,
+        conversation_history: List[Dict[str, str]],
+        slots: Dict[str, Any] = None,
+    ) -> str:
+        """
+        Generates conversational discovery and qualification responses.
+        """
+        if not self.client:
+            return prompt_instruction
+
+        system_prompt = (
+            "You are Alex, an experienced, friendly, and professional commercial lending advisor at Darwix Commercial Lending speaking over the phone with a business loan applicant.\n"
+            f"GOAL / INSTRUCTION: {prompt_instruction}\n"
+            f"CURRENT QUALIFICATION SLOTS COLLECTED: {slots or {}}\n"
+            "RULES:\n"
+            "1. Speak naturally, warmly, and concisely as if speaking over a phone call.\n"
+            "2. Keep your response brief (1-2 sentences) so the borrower can easily reply.\n"
+            "3. Do NOT output internal thinking or reasoning tags.\n"
+        )
+
+        messages = [{"role": "system", "content": system_prompt}]
+        for turn in conversation_history[-4:]:
+            messages.append({"role": turn["role"], "content": turn["content"]})
+        messages.append({"role": "user", "content": user_message})
+
+        for model_candidate in self.models_to_try:
+            try:
+                completion = self.client.chat.completions.create(
+                    model=model_candidate,
+                    messages=messages,
+                    temperature=0.2,
+                    max_tokens=150,
+                )
+                raw_out = completion.choices[0].message.content.strip()
+                res_text = clean_llm_response(raw_out)
+                if res_text:
+                    return res_text
+            except Exception:
+                continue
+
+        return prompt_instruction
+
     def generate_grounded_response(
         self,
         user_message: str,
@@ -148,13 +194,14 @@ class GroqService:
             return self._generate_offline_grounded_response(user_message, retrieved_context, dialogue_state)
 
         system_prompt = (
-            "You are a professional, helpful, and concise commercial lending and underwriting knowledge assistant for Darwix AI.\n"
-            "STRICT GROUNDING & MULTI-QUESTION RULES:\n"
-            "1. Answer ALL questions asked by the user factually using ONLY the RETRIEVED CONTEXT below.\n"
-            "2. If multiple questions are asked in a single prompt (e.g. timeline, customer service, processing fees, charges, penal interest), address each sub-topic clearly and directly.\n"
-            "3. If a specific detail is not present in the context, explicitly state that it is unavailable in official guidelines.\n"
-            "4. NEVER invent interest rates, fee percentages, or turnaround guarantees.\n"
-            "5. Do NOT output your internal thinking or scratchpad.\n\n"
+            "You are Alex, an experienced, friendly, and professional commercial lending advisor at Darwix Commercial Lending speaking over the phone with a business owner.\n\n"
+            "CONVERSATIONAL EXPLANATION RULES (DO NOT READ RAW TEXT):\n"
+            "1. Explain the guidelines in natural, conversational human language as if speaking on a phone call. Never read raw manual text or robotic bullet lists verbatim.\n"
+            "2. Break down complex underwriting terms into clear, practical explanations for the borrower (e.g. explain what limits, collateral conditions, or fees mean for their business).\n"
+            "3. Answer ALL parts of the user's inquiry thoroughly and factually using ONLY the RETRIEVED CONTEXT below.\n"
+            "4. NEVER invent interest rates, fee percentages, or turnaround guarantees not present in the context. If a specific detail is not in the context, politely explain that it is not covered in our standard manual and offer senior specialist assistance.\n"
+            "5. Preserve exact numbers, limits, and percentages from the context while explaining them smoothly and naturally.\n"
+            "6. Do NOT output your internal thinking, reasoning steps, or scratchpad.\n\n"
             f"CURRENT DIALOGUE STATE: {dialogue_state}\n"
             f"RETRIEVED CONTEXT:\n{retrieved_context}\n"
         )

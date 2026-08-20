@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatCanvas = document.getElementById("q3-chat-canvas");
   const textInput = document.getElementById("q3-text-input");
   const btnSend = document.getElementById("q3-btn-send");
+  const btnMic = document.getElementById("q3-btn-mic");
+  const micIcon = document.getElementById("q3-mic-icon");
   const suggestedPills = document.querySelectorAll(".q3-pill-btn");
 
   // State
@@ -30,6 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let isPlayingScenario = false;
   let scenarioTimeouts = [];
   let conversationHistory = [];
+  let mediaRecorder = null;
+  let audioChunks = [];
+  let isRecording = false;
 
   // 1. Initialize Markets & Scenarios
   async function init() {
@@ -294,10 +299,63 @@ document.addEventListener("DOMContentLoaded", () => {
       const botName = data.bot_name || (currentMarket === "PH" ? "Maria (Agent)" : "Dewi (Agent)");
       appendMessage("assistant", data.reply_text, botName, data.finance_terms_identified || []);
       conversationHistory.push({ role: "assistant", content: data.reply_text });
-      speakNative(data.reply_text, "Agent");
+      speakNativeAsync(data.reply_text, "Agent");
     } catch (e) {
       console.error("[Q3 Chat Error]:", e);
       appendMessage("assistant", "Paumanhin po / Mohon maaf, may technical error po. Paki-ulit na lang po.", "System");
+    }
+  }
+
+  // 7. Live Microphone Audio Recording & Speech-to-Text
+  async function toggleMic() {
+    if (!isRecording) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+
+        mediaRecorder.ondataavailable = (e) => audioChunks.push(e.data);
+        mediaRecorder.onstop = async () => {
+          const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+          const formData = new FormData();
+          formData.append("file", audioBlob, "q3_mic_voice.wav");
+
+          if (textInput) textInput.placeholder = "Transcribing your voice...";
+          try {
+            const transRes = await fetch(`/api/v1/q3/transcribe?market_code=${currentMarket}`, {
+              method: "POST",
+              body: formData,
+            });
+            const transData = await transRes.json();
+            if (transData && transData.transcription) {
+              sendUserMessage(transData.transcription);
+            }
+          } catch (err) {
+            console.error("[Q3 Mic Error]:", err);
+          } finally {
+            if (textInput) {
+              textInput.placeholder = "Type a message in Taglish or Bahasa Indonesia...";
+            }
+          }
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        if (btnMic) btnMic.classList.add("recording");
+        if (micIcon) micIcon.textContent = "⏹️";
+        if (textInput) textInput.placeholder = "Listening... Speak in Taglish or Bahasa!";
+      } catch (err) {
+        console.warn("[Q3 Mic Access Denied]:", err);
+        alert("Microphone access is required to speak directly. Please check your browser permissions.");
+      }
+    } else {
+      if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
+        mediaRecorder.stream.getTracks().forEach(track => track.stop());
+      }
+      isRecording = false;
+      if (btnMic) btnMic.classList.remove("recording");
+      if (micIcon) micIcon.textContent = "🎙️";
     }
   }
 
@@ -317,6 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnStopScenario) btnStopScenario.addEventListener("click", stopScenario);
 
   if (btnSend) btnSend.addEventListener("click", () => sendUserMessage());
+  if (btnMic) btnMic.addEventListener("click", toggleMic);
   if (textInput) {
     textInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") sendUserMessage();

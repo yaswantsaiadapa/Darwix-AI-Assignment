@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Darwix AI Voice Assistant - Commercial Lending & Knowledge Retrieval</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎙️</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=60">
+  <link rel="stylesheet" href="css/style.css?v=65">
 </head>
 <body>
 
@@ -305,10 +306,13 @@
           </div>
         </div>
 
-        <!-- INTERACTIVE TEXT INPUT -->
+        <!-- INTERACTIVE TEXT & MIC INPUT -->
         <div class="bottom-input-bar">
           <div class="input-shell">
             <input type="text" id="q3-text-input" placeholder="Type a message in Taglish or Bahasa Indonesia..." />
+            <button id="q3-btn-mic" class="btn-icon-mic" title="Speak via microphone">
+              <span id="q3-mic-icon">🎙️</span>
+            </button>
             <button id="q3-btn-send" class="btn-icon-send" title="Send message">
               <span>➤</span>
             </button>
@@ -466,9 +470,9 @@
 
   </div>
 
-  <script src="js/q1_voice_caller.js?v=60"></script>
-  <script src="js/q2_kb_inspector.js?v=60"></script>
-  <script src="js/q3_multilingual.js?v=60"></script>
-  <script src="js/q4_agent_cockpit.js?v=60"></script>
+  <script src="js/q1_voice_caller.js?v=65"></script>
+  <script src="js/q2_kb_inspector.js?v=65"></script>
+  <script src="js/q3_multilingual.js?v=65"></script>
+  <script src="js/q4_agent_cockpit.js?v=65"></script>
 </body>
 </html>
